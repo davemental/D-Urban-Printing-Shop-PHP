@@ -59,7 +59,13 @@
                     </div>
                 </article>
             </div>
+
+
+            <?php var_dump($productData); ?>
         </div>
+
+
+        
 
         <div class="customize-getquote">
             <a href="<?php echo APP_URL; ?>get-a-quote" class="primary-btn" aria-label="">Request A Free Quote Now</a>

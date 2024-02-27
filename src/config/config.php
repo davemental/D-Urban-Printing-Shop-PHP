@@ -1,7 +1,7 @@
 <?php
 
 // Aassign site url
-define("APP_URL", "http://localhost/urban-print/");
+define("APP_URL", "http://localhost/D-URBAN/");
 
 // Database credentials
 define("DB_HOST", "localhost");

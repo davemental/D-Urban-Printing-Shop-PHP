@@ -19,12 +19,16 @@ class HomeController extends RenderView {
     // Home Page
     public function index() {
 
-        
         $this->loadView("pages/partials/header", [
             "title" => "Home Page",
         ]);
 
-        $this->loadView("pages/home", []);
+        $product = new Product();
+        $allProducts = $product->getAllProducts();
+
+        $this->loadView("pages/home", [
+            "productData" => $allProducts,
+        ]);
 
         $this->loadView("pages/partials/footer", []);
     }
@@ -35,20 +39,32 @@ class HomeController extends RenderView {
             "title" => "Products",
         ]);
 
-        $this->loadView("pages/products", []);
+        $product = new Product();
+        $allProducts = $product->getAllProducts();
+
+        $this->loadView("pages/products", [
+            "productData" => $allProducts,
+        ]);
 
         $this->loadView("pages/partials/footer-quick-contact", []);
         
         $this->loadView("pages/partials/footer", []);
     }
 
-    public function productItem() {
+    public function productItems() {
+
+        $id = $_GET["id"];
+
+        $product = new Product();
+        $productItem = $product->getProductById($id);
 
         $this->loadView("pages/partials/header", [
             "title" => "Product Item",
         ]);
 
-        $this->loadView("pages/product-item", []);
+        $this->loadView("pages/product-item", [
+            "productData" => $productItem,
+        ]);
 
         $this->loadView("pages/partials/footer-quick-contact", []);
         $this->loadView("pages/partials/footer", []);
@@ -88,5 +104,7 @@ class HomeController extends RenderView {
         $this->loadView("pages/partials/footer", []);
         
     }
+
+
 
 }

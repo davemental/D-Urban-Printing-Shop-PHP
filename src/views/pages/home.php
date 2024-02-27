@@ -53,40 +53,18 @@
 
     <section id="products">
         <div class="product-list">
-            <article class="item-container">
-                <div class="item shrink-on-hover">
-                    <a href="#" class="item-anchor" aria-label=""></a>
-                    <img src="<?php echo APP_URL; ?>\public\images\uploads\products\jacket.png" alt="" />
-                </div>
-            </article>
-            
-            <article class="item-container">
-                <div class="item shrink-on-hover">
-                    <a href="#" class="item-anchor" aria-label=""></a>
-                    <img src="<?php echo APP_URL; ?>\public\images\uploads\products\jacket.png" alt="" />
-                </div>
-            </article>
+            <?php 
+                
+                foreach($productData as $item) {
 
-            <article class="item-container">
-                <div class="item shrink-on-hover">
-                    <a href="#" class="item-anchor" aria-label=""></a>
-                    <img src="<?php echo APP_URL; ?>\public\images\uploads\products\jacket.png" alt="" />
-                </div>
-            </article>
-
-            <article class="item-container">
-                <div class="item shrink-on-hover">
-                    <a href="#" class="item-anchor" aria-label=""></a>
-                    <img src="<?php echo APP_URL; ?>\public\images\uploads\products\jacket.png" alt="" />
-                </div>
-            </article>
-
-            <article class="item-container">
-                <div class="item shrink-on-hover">
-                    <a href="#" class="item-anchor" aria-label=""></a>
-                    <img src="<?php echo APP_URL; ?>\public\images\uploads\products\jacket.png" alt="" />
-                </div>
-            </article>
+                echo '<article class="item-container">
+                        <div class="item shrink-on-hover">
+                            <a href="' .APP_URL .'product-item?id= ' . $item->id . '" class="item-anchor" aria-label=""></a>
+                            <img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" />
+                        </div>
+                    </article>';
+                }
+            ?>
         </div>
 
         <div class="m-m">
