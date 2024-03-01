@@ -17,7 +17,7 @@
 
             <div>
                 <label for="description">Product Description*</label>
-                <textarea id="editor" name="description" required></textarea>
+                <textarea id="editor" name="description"></textarea>
             </div>
 
             <div>
@@ -63,11 +63,9 @@
             </div>
 
             <div>
-                <input type="submit" value="Save Product" class="primary-btn" />
+                <button class="primary-btn" data-save_product>Save Product</button>
             </div>
         </form>
-
-
     </div>
 </section>
 
@@ -92,4 +90,4 @@
       
 </script>
 
-<script src="<?php echo APP_URL;?>/public/js/createProduct.js"></script>
+<script type="module" async src="<?php echo APP_URL;?>/public/js/createProduct.js"></script>

@@ -1,20 +1,16 @@
-const form = document.querySelector('.add-product form');
+"option strict";
 
-async function ajax(config) {
-    try {
-        const request = await fetch(config.url, config.headers);
-        const response = await request.json();
-        config.success(response);
-    } catch(err) {
-        config.error(err);
-    }
-}
+import {
+    ajax
+} from "./utils.js";
+
+const form = document.querySelector('.add-product form');
 
 function handleSubmitProduct(ev) {
     ev.preventDefault();
 
     const { title, description, featured_product_image, sample_product_image } = form;
-    const formData = new FormData(this);
+    const formData = new FormData();
 
     formData.append('title', title.value);
     formData.append('description', description.value);
@@ -29,7 +25,6 @@ function handleSubmitProduct(ev) {
         headers: {
             body: formData,
             method: "POST",
-            contentType: false,
         },
         success(data){ 
             if (data?.error) {
@@ -46,12 +41,13 @@ function handleSubmitProduct(ev) {
                 document.querySelectorAll(".image-item-featured")?.forEach(image => image.remove());
                 document.querySelectorAll(".image-item-sample")?.forEach(image => image.remove());
                 tex.destroy(document.getElementById("editor"));
+                uploadFiles = [];
                 
                 resetTextEditor();
             }
         },
         error(err) {
-            // console.log(err);
+            console.log(err);
         }
     })
 }
@@ -81,4 +77,12 @@ function resetTextEditor() {
     });
 }
 
-form.addEventListener("submit", handleSubmitProduct);
+// attaching event handle to save btn
+const saveBtn = document.querySelector("[data-save_product]");
+saveBtn.addEventListener("click", handleSubmitProduct);
+
+
+document.querySelector('.test').addEventListener("click", () => { 
+    console.log(document.querySelector('.s_upload__inputfile').files);
+    console.log(uploadFiles);
+})

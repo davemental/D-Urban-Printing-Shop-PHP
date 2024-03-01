@@ -10,6 +10,8 @@ $routes = [
 
     "/admin" => "AdminController@index",
     "/manage-products" => "AdminController@products",
+    "/search-product" => "AdminController@searchProduct",
     "/add-product" => "AdminController@addProduct",
     "/create-add-product" => "AdminController@createProduct",
+    "/delete-product"=> "AdminController@deleteProduct",
 ];

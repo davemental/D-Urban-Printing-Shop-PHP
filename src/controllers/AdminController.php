@@ -33,11 +33,35 @@ class AdminController extends RenderView {
             "title" => "Product Management",
         ]);
 
-        $this->loadView("pages/admin/products", [
+        $product = new Product();
+        $allProducts = $product->getAllProducts();
+
+        $this->loadView("pages/admin/manage-products", [
             "title" => "Product Management",
+            "productData" => $allProducts
         ]);
 
         $this->loadView("pages/partials/admin-footer", []);
+    }
+
+
+    public function searchProduct() {
+
+        $product = new Product();
+        $productData = [];
+
+        if (!(isset($_POST['product_key'])) || !(empty($_POST['product_key']))) {
+
+            $productKey = $_POST['product_key'];
+            $productKey = preg_replace('/[^A-Za-z0-9\s]/', '', $productKey); // clean the search key
+
+            // search product name
+            $productData["products"] = $product->getProductByName($productKey);
+            $productData["app_url"] = APP_URL; 
+         }
+
+         echo json_encode($productData);
+           
     }
 
     public function addProduct() {
@@ -97,17 +121,15 @@ class AdminController extends RenderView {
                 $sample_img_file_name_str = $sample_img_file_name_str . time() . ".". $sample_img_ext;
 
                 if (move_uploaded_file($sample_img_tmp_name[$i], $uploadDir .  $sample_img_file_name_str)) {
-                    if (empty($sample_images)) {
-                        $sample_images =  $sample_img_file_name_str;
-                    } else {
-                        $sample_images = $sample_images . ", ". $sample_img_file_name_str;
-                    }
+
+                    $sample_images != "" && $sample_images .= ", ";
+                    $sample_images .= $sample_img_file_name_str;
 
                     $sampleImgIsUploaded = true;
                 }
             }
 
-            if ($featureImgIsUploaded) {
+            if ($featureImgIsUploaded AND $sampleImgIsUploaded) {
                 if ($product->create($title, $description, $featured_img_file_name, $sample_images)) {
                     $msg['success'] = "Product created successfully";
                 } else {
@@ -116,9 +138,62 @@ class AdminController extends RenderView {
             }
 
         }
-
         echo json_encode($msg);
     }
 
 
+    public function deleteProduct(){
+
+        $ids = $_POST['id'];
+        $featured_imgs = $_POST['featured_img'];
+
+        $msg = [];
+        $images = [];
+        $numDeleted = 0;
+        $file_directory = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/uploads/products/';
+
+        $product = new Product();
+
+        // get all images and save to array 
+        for ($i = 0; $i < count($ids); $i++) {
+
+            array_push($images, $file_directory . $featured_imgs[$i]); //push first the featured image
+            
+            //get all sample images for each id
+            $sample_images = $product->getProductSampleImageById($ids[$i]);
+            $sample_images = explode(', ', $sample_images->sample_img);
+
+            foreach ($sample_images as $img) {
+                array_push($images, $file_directory . $img); // push also all the sample images
+            }
+        }
+
+         // delete all images that has stored in array
+        foreach ($images as $img) {
+            if (file_exists($img)) {
+                unlink($img);
+                $numDeleted += 1;
+            }
+        }
+
+        // delete only if the count is matched
+        if (count($images) === $numDeleted) {
+
+            $status = false;
+            foreach($ids as $id) {
+              $status = $product->deleteProductById($id) ? true : false;
+            }
+
+            if ($status) {
+                $msg["success"] = "Delete successful";
+            } else {
+                $msg["error"] = "Encountered error while deleting the product";
+            }
+            
+        } else {
+            $msg["error"] = "Encountered error while deleting the product";
+        }
+
+        echo json_encode($msg);
+    }
 }

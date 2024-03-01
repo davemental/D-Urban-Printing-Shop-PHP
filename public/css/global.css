@@ -7,8 +7,14 @@
     --black: #0d1013;
 
     --header-bg: VAR(--black);
-    --primary-btn-bg: 211, 59, 74;
 
+    /* BACKGROUND BUTTON */
+    --primary-btn-bg: 211, 59, 74;
+    --secondary-btn-bg: 90, 106, 207;
+
+    /* TEXT COLOR */
+    --primary-color: 18, 18, 18;
+    --secondary-color: 248, 212, 215;
 
 
     /* light theme */
@@ -221,10 +227,6 @@ img {
     height: auto;
 }
 
-
-button:disabled {
-    pointer-events: none;
-}
 
 html {
     font-family: var(--font-primary);
@@ -454,11 +456,6 @@ button {
     font: inherit;
 }
 
-button {
-    cursor: pointer;
-    white-space: nowrap;
-}
-
 button svg {
     width: 1.5rem;
     pointer-events: none;
@@ -468,7 +465,6 @@ button span {
     pointer-events: none;
 }
 
-button,
 input,
 select,
 textarea {
@@ -515,21 +511,93 @@ input[type="submit"]:hover {
 
 
 /* BUTTONS/ANCHOR LINKS */
+button {
+    font-size: 1.3rem;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+button:hover {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+button.primary-btn:disabled {
+    pointer-events: none;
+    background-color: rgb(var(--primary-btn-bg), 0.7);
+    border: 1px solid rgba(var(--primary-btn-bg), 0.2);
+    color: rgba(var(--primary-color), 0.5);
+}
+
+button.secondary-btn:disabled {
+    background-color: rgb(var(--secondary-btn-bg), 0.3);
+    border: 1px solid rgba(var(--secondary-btn-bg), 0.2);
+    color: rgba(var(--primary-color), 0.5);
+ }
+
+ .primary-btn, .secondary-btn, .primary-outline-btn {
+    width: 100%;
+    white-space: nowrap;
+    font-weight: 500;
+
+    padding: 1.5rem 3rem;
+    border-radius: 6px;
+    color: rgba(var(--primary-color));
+}
+
 .primary-btn {
-  font-size: 1.5rem;
-  font-weight: 500;
-  padding: 1.5rem 3rem;
-  border-radius: 6px;
   background-color: rgb(var(--primary-btn-bg));
   border: 1px solid rgba(var(--primary-btn-bg), 0.6);
-  color: #f8d4d7;
-  transition: all 0.5s;
+  color: rgb(var(--secondary-color));
 }
 
 .primary-btn:hover {
   background-color: rgba(var(--primary-btn-bg), 0.8);
-  border: 1px solid rgba(var(--primary-btn-bg));
+  border: 1px solid rgb(var(--primary-btn-bg));
 }
+
+.secondary-btn {
+    background-color: rgba(var(--secondary-btn-bg), 0.8);
+    border: 1px solid rgb(var(--secondary-btn-bg));
+}
+
+.secondary-btn:hover, .primary-outline-btn:hover {
+    background-color: rgba(var(--secondary-btn-bg), 0.55);
+    border: 1px solid rgb(var(--secondary-btn-bg));
+}
+
+.primary-outline-btn {
+    border: 1px solid rgba(var(--secondary-btn-bg), 0.35);
+}
+
+
+
+.primary-action-btn {
+    width: 25px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-action-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: rgba(var(--primary-color), 0.4);
+ }
+
+ .primary-action-btn:hover  {
+    background-color: rgba(var(--secondary-btn-bg), 0.3);
+    border: 1px solid rgba(var(--secondary-btn-bg), 0.4);
+ }
+
+ .primary-action-btn:hover  svg  { 
+    fill: rgba(var(--secondary-btn-bg), 0.8);
+ }
+
+
+
 
 .item-anchor {
   position: absolute;
@@ -546,7 +614,7 @@ input[type="submit"]:hover {
   border-radius: 6px;
   background-color: rgb(var(--primary-btn-bg));
   border: 1px solid rgba(var(--primary-btn-bg), 0.6);
-  color: #f8d4d7;
+  color: rgb(var(--secondary-color));
 }
 
 /*===================*/

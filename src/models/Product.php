@@ -28,8 +28,32 @@ class Product {
         return $this->db->singleResult();
     }
 
+    public function getProductSampleImageById($id) {
+        $this->db->query("SELECT sample_img FROM products WHERE id = :id LIMIT 1");
+        $this->db->bind(":id", $id);
+        return $this->db->singleResult();
+    }
+
+    public function getProductByName($name){
+        $this->db->query("SELECT * FROM products WHERE title LIKE :title");
+        $keyword = "%" . $name . "%"; //add wildcards
+        $this->db->bind(":title", $keyword);
+        return $this->db->resultSet();
+    }
+
     public function getAllProducts() {
         $this->db->query("SELECT * FROM products");
         return $this->db->resultSet();
+    }
+
+    public function deleteProductById($id){
+        $this->db->query("DELETE FROM products WHERE id = :id");
+        $this->db->bind(":id", $id);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

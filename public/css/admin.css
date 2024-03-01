@@ -1,7 +1,7 @@
 /* HEADER */
 header {
     min-height: 100px;
-    border: 1px solid #ccc;
+    border: 1px solid #C8CBD9;
 }
 
 
@@ -15,29 +15,51 @@ main {
 
 /* SIDE BAR MENU SECTION */
 .sidebar-menu {
-    border: 1px solid #ccc;
+    background-color: #F1F2F7;
+    padding: 15px;
 }
 
 .sidebar-menu nav a {
-    display: block;
+    display: flex;
+    text-align: center;
+    gap: 10px;
+
     margin: 10px 0;
     padding: 10px 20px;
-    color: #000;
+    border-radius: 5px;
+
+    color: #273240;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
-.sidebar-menu nav a:hover {
-    transition: all 0.5s;
-    background-color: #ccc;
+.sidebar-menu nav a svg { 
+    width: 16px;
+    height: 16px;
 }
 
-.sidebar-menu nav a.active {
-    background-color: #ccc;
+.sidebar-menu nav a:hover,
+.sidebar-menu nav a.active
+{
+    transition: all 0.5s ease;
+    color: #4e5bad;
+    background-color: rgba(112, 127, 221, 0.2);
 }
+
+.sidebar-menu nav .product-dropdown {
+    margin-left: 10px;
+}
+
+.sidebar-menu nav .product-dropdown a {
+    margin: -5px 0 0 0;
+}
+
 
 /* CONTENT  */
 .content-wrapper {
-    border: 1px solid #ccc;
-    padding-bottom: 50px;
+    padding: 20px 20px 60px 20px;
+    background-color: #fff;
+    color: rgba(var(--primary-color), 0.75);
 }
 
 
@@ -49,17 +71,10 @@ main {
 
 
 
-/* OTHERS */
-.page-title {
-    margin: 20px;
-}
+
 
 
 /* ADD NEW PRODUCT */
-.add-product {
-    padding: 20px;
-}
-
 .add-product form {
     display: flex;
     flex-direction: column;
@@ -69,6 +84,10 @@ main {
 .add-product form label {
     font-weight: 600;
     font-size: 1.6rem;
+}
+
+.add-product form button {
+    width: 180px;
 }
 
 .add-product form input[type="text"], 
@@ -198,6 +217,227 @@ main {
 
 
 
+
+
+
+/* MANAGE PRODUCTS */
+.mp-menu-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.mp-menu-container .search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.mp-menu-container .search-form button {
+    width: 50px;
+    padding: 0 10px;
+}
+
+.mp-menu-container .search-form button svg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: -5px;
+}
+
+.mp-menu-container .search-input {
+    width: 300px;
+    border: 1px solid rgba(85, 86, 90, 0.12);
+    border-radius: 5px;
+}
+
+.mp-menu-container .search-input svg {
+    margin-left: 10px; 
+    color: rgba(var(--primary-color), 0.3);
+}
+
+.mp-menu-container .search-input input {
+    margin-left: -15px; 
+}
+
+.mp-button-container, 
+.mp-button-container button,
+.mp-button-container a,
+.mp-menu-container .search-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mp-button-container button, 
+.mp-button-container a {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+}
+
+.product-list table {
+    width: 100%;
+    font-size: 1.3rem;
+
+    border-collapse: collapse;
+    border-radius: 10px;
+    border-style: hidden;
+    box-shadow: 0 0 0 1px rgba(85, 86, 90, 0.12);
+    
+}
+
+.product-list table thead {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(85, 86, 90, 0.10);
+}
+
+.product-list table thead th {
+    padding: 15px 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.product-list table tr td input[type="checkbox"],
+.product-list table tr th input[type="checkbox"] {
+  accent-color:  rgba(125, 131, 152, 0.4);
+}
+
+.product-list table thead th:nth-child(1),
+.product-list table thead th:nth-child(2),
+.product-list table thead th:nth-child(5),
+.product-list table thead th:nth-child(7) { 
+    text-align: center;
+}
+
+.product-list table tr td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.product-list table tbody tr:hover {
+    cursor: pointer;
+    background-color: rgba(248, 248, 248, 0.8);
+}
+
+.product-list table tbody td {
+    color: rgba(var(--primary-color), 0.65);
+}
+
+.product-list table tr td:nth-child(1) {
+    width: 2%;
+    text-align: center;
+}
+
+.product-list table tr td:nth-child(2) {
+    width: 5%;
+    text-align: center;
+}
+
+.product-list table tr td:nth-child(3) {
+    width: 28%;
+}
+
+.product-list table tr td:nth-child(4) {
+    width: 45%;
+    max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-list table tr td:nth-child(5) {
+    text-align: center;
+    width: 5%;
+    min-width: 150px;
+}
+
+.product-list table tr td:nth-child(5) > img {
+    max-width: 40px;
+    height: auto;
+    vertical-align: middle;
+ }
+
+ .product-list table tr td:nth-child(6) { 
+    width: 10%;
+ }
+.product-list table tr td:nth-child(7) {
+    width: 5%;
+}
+
+.product-list table tr td:nth-child(7) > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.product-list table tbody tr {
+    border-bottom: 1px solid rgba(85, 86, 90, 0.10);
+}
+.product-list table tbody tr:nth-child(even) {
+    background-color: rgba(248, 248, 248, 0.4);
+}
+
+/* table list navigation
+.mp-navigation-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mp-navigation-container span {
+    display: block;
+}
+
+.table-pagination,
+.table-pagination > div {
+    display: flex;
+    align-items: center;
+}
+
+.table-pagination {
+    gap: 30px;
+}
+
+.table-pagination > div { 
+    gap: 5px;
+}
+
+.table-pagination select {
+    width: 50px;
+    border: none;
+    padding: 0;
+}
+
+.table-pagination button {
+    border: 1px solid rgba(var(--primary-color), 0.12);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.table-pagination button:hover {
+    border: 1px solid rgba(var( --secondary-btn-bg), 0.4);
+    background-color:  rgba(var( --secondary-btn-bg), 0.3);
+}
+
+.table-pagination button svg {
+    height: 15px;
+    width: 15px;
+} */
+
+
+
+
+
+
+
+
+
+/* OTHERS */
+.page-title {
+    margin: 20px 0;
+}
 
 
 

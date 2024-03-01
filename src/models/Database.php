@@ -66,7 +66,7 @@ class Database
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
-
+    
     public function bind($param, $value, $type=null) {
         if (is_null($type)) {
             switch(true) {
