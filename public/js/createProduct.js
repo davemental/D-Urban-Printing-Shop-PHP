@@ -1,7 +1,8 @@
 "option strict";
 
 import {
-    ajax
+    ajax,
+    showAlert
 } from "./utils.js";
 
 const form = document.querySelector('.add-product form');
@@ -26,10 +27,10 @@ function handleSubmitProduct(ev) {
             body: formData,
             method: "POST",
         },
-        success(data){ 
+        success(data) {
             if (data?.error) {
                 showAlert("Creation Failed", data.error);
-            } else if (data?.success){
+            } else if (data?.success) {
                 showAlert("Create Successful", data.success);
 
                 // Reset form
@@ -49,21 +50,9 @@ function handleSubmitProduct(ev) {
         error(err) {
             console.log(err);
         }
-    })
+    });
 }
 
-function showAlert(title,message) {
-    alertify.alert()
-    .setting({
-    'title': title,
-        'message': `${message}`,
-    
-        notifier: {
-            delay: 5,
-            closeButton: false,
-        }
-}).show();
-}
 
 function resetTextEditor() {
     
@@ -80,9 +69,3 @@ function resetTextEditor() {
 // attaching event handle to save btn
 const saveBtn = document.querySelector("[data-save_product]");
 saveBtn.addEventListener("click", handleSubmitProduct);
-
-
-document.querySelector('.test').addEventListener("click", () => { 
-    console.log(document.querySelector('.s_upload__inputfile').files);
-    console.log(uploadFiles);
-})

@@ -15,7 +15,7 @@
                 <input type="text" name="product_key" placeholder="Search product" required/>
             </div>
 
-            <button class="primary-outline-btn">
+            <button class="primary-outline-btn" data-btn_search>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="20" width="20">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
@@ -43,7 +43,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><input class="bulk_check" type="checkbox" name="check_all" data-check_all></th>
+                    <th><input class="bulk_check" type="checkbox" name="check_all" data-bulk_check></th>
                     <th>Id</th>
                     <th>Product Name</th>
                     <th>Description</th>
@@ -75,12 +75,12 @@
                                     <td><span data-date_entry="'. date('m/d/Y H:i:s', strtotime($item->date_entry)).'">'. date('m/d/Y', strtotime($item->date_entry)) .'</span></td>
                                     <td>
                                         <div>
-                                            <button class="primary-action-btn" data-edit>
+                                            <a href="'. APP_URL .'edit-product/'.  $item->id .'" class="primary-action-btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 -960 960 960" width="15">
                                                     <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/>
                                                 </svg>
-                                            </button>
-                                            <button class="primary-action-btn delete_btn">
+                                            </a>
+                                            <button class="primary-action-btn delete_btn" data-delete_btn>
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 -960 960 960" width="15">
                                                     <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
                                                 </svg>
@@ -90,51 +90,15 @@
                                 </tr>';
                         }
                     }
-                    
                 ?>
                  <!-- RENDER DYNAMIC DATA -->
             </tbody>
         </table>
-
-
     </div>
-
-    <!-- <div class="mp-navigation-container">
-        <div class="pagination-status">
-            <span>1-10 or 97</span>
-        </div>
-
-        <div.append('title', 'Delete Product');ass="table-pagination">
-            <div>
-                <span>Rows per page:</span>
-                <select name="rows_per_page">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-            </div>
-
-            <div class="pagination-control">
-                <button data-prev>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="15" width="15">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-
-                <span>1/10</span>
-
-                <button data-next>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  height="15" width="15">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
-        </div.append>
-    </div> -->
+    
 </section>
 
 </main>
 
-<script type="module" async src="<?php echo APP_URL;?>/public/js/adminApp.js"></script>
+
 

@@ -9,21 +9,24 @@
             </div> -->
 
             <!-- Images -->
-            <div class="carousel-item" js-carousel-item data-active-slide>
-                <img src="<?php echo APP_URL; ?>/public/images/carousel/slide1.jpg" alt="">
-            </div>
-            <div class="carousel-item" js-carousel-item>
-                <img src="<?php echo APP_URL; ?>/public/images/carousel/slide2.jpg" alt="">
-            </div>
-            <div class="carousel-item" js-carousel-item>
-                <img src="<?php echo APP_URL; ?>/public/images/carousel/slide3.jpg" alt="">
-            </div>
-            <div class="carousel-item" js-carousel-item>
-                <img src="<?php echo APP_URL; ?>/public/images/carousel/slide4.jpg" alt="">
-            </div>
-            <div class="carousel-item" js-carousel-item>
-                <img src="<?php echo APP_URL; ?>/public/images/carousel/slide2.jpg" alt="">
-            </div>
+            <?php 
+
+                if (count($imgSlide) > 0) {
+                    foreach($imgSlide as $img) {
+                        echo '
+                            <div class="carousel-item" js-carousel-item>
+                                <img src="' . APP_URL . '/public/images/carousel/'. $img->img_name .'" alt="">
+                            </div>';
+                        }
+                } else {
+                echo '
+                    <div class="carousel-item" js-carousel-item>
+                        <img src="'. APP_URL .'/public/images/carousel/no-image.jpg" alt="">
+                    </div>
+                    ';
+                }
+               
+            ?>
 
             <!-- Navigation Arrows -->
             <button type="button" class="carousel-arrow prev" data-carousel-arrows data-dir="prev"> &#x2039; </button>
@@ -174,6 +177,6 @@
     </section>
 
     <!-- Image Carousel JS Script -->
-    <script src="<?php echo APP_URL; ?>/public/js/carousel.js"></script>
+    <script  src="<?php echo APP_URL; ?>/public/js/plugins/carousel.js" defer></script>
 </main>
 

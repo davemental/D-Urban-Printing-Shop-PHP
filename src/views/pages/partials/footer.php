@@ -3,6 +3,6 @@
     <p>© 2020 - 2024 D-Urban Print. All rights reserved.</p>
 </footer>
 
-    <script src="<?php echo APP_URL; ?>/public/js/utils.js"></script>
+    <script type="module" async src="<?php echo APP_URL;?>/public/js/app.js"></script>
 </body>
 </html>

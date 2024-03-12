@@ -24,10 +24,11 @@ class HomeController extends RenderView {
         ]);
 
         $product = new Product();
-        $allProducts = $product->getAllProducts();
+        $imgData = new imageCarousel();
 
         $this->loadView("pages/home", [
-            "productData" => $allProducts,
+            "productData" => $product->getAllProducts(),
+            "imgSlide" => $imgData->getAllImage(),
         ]);
 
         $this->loadView("pages/partials/footer", []);

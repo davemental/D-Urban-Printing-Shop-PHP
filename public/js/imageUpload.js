@@ -1,5 +1,6 @@
 let uploadFiles = [];
 const sizeLimit = 2_000_000; // 2mb size limit
+let sample_imgs_filename_removed = []; // save images remove for edit product
 
 
 function ImgUpload(ev) {
@@ -14,6 +15,8 @@ function ImgUpload(ev) {
 
     let filesArr = Array.prototype.slice.call(files);
     let iterator = 0;
+    const imgsPreview = document.querySelectorAll("[data-sample_img]");
+
     filesArr.forEach(function (f, index) {
         if (!f.type.match("image.*")) {
             errorMsg.push(`<b>${f.name}</b> - <i class="text-body-xs">Invalid file format</i>`)
@@ -23,7 +26,7 @@ function ImgUpload(ev) {
             errorMsg.push(`<b>${f.name}</b> - <i class="text-body-xs">File limit size reached</i>`);
             return false;
 
-        } else if (uploadFiles.length > maxLength) {
+        } else if ((uploadFiles.length + parseInt(imgsPreview.length)) > maxLength) {
             // console.log(uploadFiles.length);
             errorMsg.push(`<br/><b>You reached the maximum number to files to upload</b>`);
             return false;
@@ -113,17 +116,20 @@ document.addEventListener("click", function (e) {
 
             //remove from file list
             syncUploadFileArrayToInput(this.documentElement.querySelector(".s_upload__inputfile"));
+
+            // save remove file name
+            sample_imgs_filename_removed.push(file);
             return false;
         }
     }
 }, false)
 
 // atach event listener to input file
-document.querySelector(".s_upload__inputfile").addEventListener("change", ImgUpload);
+document.querySelector(".s_upload__inputfile")?.addEventListener("change", ImgUpload);
 
 
 // atach event to feature product image input file
-document.querySelector(".f_upload__inputfile").addEventListener("change", function (ev) {
+document.querySelector(".f_upload__inputfile")?.addEventListener("change", function (ev) {
     ev.preventDefault();
 
     let imgWrap = document.querySelector(".f_upload__img-wrap");

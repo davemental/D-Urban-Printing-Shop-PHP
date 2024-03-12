@@ -4,20 +4,22 @@
 <section class="content-wrapper">
 
     <div class="page-title">
-        <h1><?php echo $title;?></h1>
+        <h1><?php echo $title; ?></h1>
     </div>
 
-    <div class="add-product">
-        <form action="" enctype="multipart/form-data">
+    <div class="edit-product">
+        <form action="" enctype="multipart/form-data" data-product_id="<?php echo $productData->id ?>">
 
             <div>
                 <label for="title">Product Name*</label>
-                <input type="text" name="title" placeholder="Product Name" required/>
+                <input type="text" name="title" placeholder="Product Name" value="<?php echo $productData->title ?>" required/>
             </div>
 
             <div>
                 <label for="description">Product Description*</label>
-                <textarea id="editor" name="description"></textarea>
+                <textarea id="editor" name="description">
+                    <?php echo $productData->description ?>
+                </textarea>
             </div>
 
             <div>
@@ -32,11 +34,22 @@
                               </svg>
 
                               <p>Click to upload image</p>
-                              <input type="file" class="f_upload__inputfile" name="featured_product_image"  accept=".jpg, .jpeg, .png, .webp|image/*" required />
+                              <input type="file" class="f_upload__inputfile" name="featured_product_image"  accept=".jpg, .jpeg, .png, .webp|image/*" />
                           </label>
                       </div>
 
-                      <!-- this will populate with images -->
+                      <div class="image-item-featured">
+                        <div class='f_upload__img-box'>
+                            <div
+                                style="background-image: url('<?php echo APP_URL . 'public/images/uploads/products/' . $productData->featured_img; ?>')" 
+                                data-number="0"
+                                data-file="<?php echo $productData->featured_img; ?>"
+                                data-featured_img
+                                class='img-bg'>
+                            </div>
+                        </div>
+                      </div>
+
                     </div>
                 </div>
             </div>
@@ -53,11 +66,39 @@
                               </svg>
 
                               <p>Click to upload images</p>
-                              <input type="file" class="s_upload__inputfile" name="sample_product_image" accept=".jpg, .jpeg, .png, .webp|image/*" data-max_length="19" multiple required>
+                              <input type="file" class="s_upload__inputfile" name="sample_product_image" accept=".jpg, .jpeg, .png, .webp|image/*" data-max_length="19" multiple >
                           </label>
                       </div>
 
                       <!-- this will populate with images -->
+                      <?php 
+                        
+                        if (!$productData->sample_img === "" OR !empty($productData->sample_img)) {
+
+                            $sample_images = explode(", ", $productData->sample_img);
+                            $count = 0;
+
+                            foreach($sample_images as $img) {
+                            
+                                echo '
+                                    <div class="image-item-sample">
+                                        <div class="upload__img-box">
+                                            <div
+                                                style="background-image: url('. APP_URL . 'public/images/uploads/products/' . $img .')" 
+                                                data-number="' . $count .'"
+                                                data-file="'. $img .'"
+                                                data-sample_img
+                                                class="img-bg">
+                                                <div class="upload__img-close"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                                $count += 1;
+                            }
+                        }
+                        
+                        ?>
                     </div>
                 </div>
             </div>
@@ -90,4 +131,4 @@
       
 </script>
 
-<script type="module" async src="<?php echo APP_URL;?>/public/js/createProduct.js"></script>
+<script type="module" async src="<?php echo APP_URL; ?>/public/js/editProduct.js"></script>
