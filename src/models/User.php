@@ -50,4 +50,10 @@ class User {
         return $this->db->resultSet();
     }
 
+    public function getUserById($id) {
+        $this->db->query("SELECT * FROM user_accounts WHERE id = :id");
+        $this->db->bind(":id", $id);
+        return $this->db->singleResult();
+    }
+
 }

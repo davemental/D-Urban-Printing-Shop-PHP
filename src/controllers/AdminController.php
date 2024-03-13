@@ -466,14 +466,68 @@ class AdminController extends RenderView {
             header("Location: " . APP_URL . "admin-login");
         }
 
+        $quote = new Quote();
+        
         $this->loadView("pages/partials/admin-header", [
-            "title" => "Form Request Received",
+            "title" => "Quote Received",
         ]);
 
         $this->loadView("pages/admin/request", [
+            "title" => "Quote Received",
+            "quoteData"=> $quote->getAllQuotes()
         ]);
 
         $this->loadView("pages/partials/admin-footer", []);
+    }
+
+    public function searchQuoteRequest() {
+
+        $quote = new Quote();
+        $quoteData = [];
+
+        if (!(isset($_POST['search_key'])) || !(empty($_POST['search_key']))) {
+
+            $searchKey = $_POST['search_key'];
+            $searchKey = preg_replace('/[^A-Za-z0-9\s]/', '', $searchKey); // clean the search key
+
+            // search product name
+            $quoteData = $quote->findAllByNameProduct($searchKey);
+         }
+
+         echo json_encode($quoteData);
+    }
+
+    public function deleteQuote() {
+        
+        $ids = $_POST['id'];
+        $msg = [];
+        $isDeleted = false;
+        $file_directory = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/quote-file/';
+
+        $quote = new Quote();
+
+        for ($i = 0; $i < count($ids); $i++) {
+
+            /** get file name in db */
+            $result = $quote->findById($ids[$i]);
+            $file_name = $result->file_name;
+
+            if (file_exists($file_directory . $file_name)) {
+                unlink($file_directory . $file_name);
+                
+                if ($quote->deleteQuoteById($ids[$i])) {
+                    $isDeleted = true;
+                }
+            }
+        }
+
+        if ($isDeleted) {
+            $msg["success"] = "Delete successful";
+        } else {
+            $msg["error"] = "Encountered error while deleting the records";
+        }
+
+        echo json_encode($msg);
     }
 
     public function users() {
@@ -538,8 +592,12 @@ class AdminController extends RenderView {
             "title" => "User Account",
         ]);
 
+        $user = new User();
+        $userData = $user->getUserById($_SESSION['user_id']);
+
         $this->loadView("pages/admin/user-account", [
             "title"=> "User Account",
+            "userData"=> $userData
         ]);
 
         $this->loadView("pages/partials/admin-footer", []);

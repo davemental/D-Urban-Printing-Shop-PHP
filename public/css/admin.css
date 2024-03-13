@@ -170,7 +170,7 @@ main {
 
 /* CONTENT  */
 .content-wrapper {
-    padding: 20px 20px 60px 20px;
+    padding: 20px 20px 100px 20px;
     background-color: #fff;
     color: rgba(var(--primary-color), 0.75);
 }
@@ -304,54 +304,15 @@ main {
 
 
 /* MANAGE PRODUCTS */
-.mp-menu-container {
+.content-top-menu {
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
 }
 
-.mp-menu-container .search-form {
-    display: flex;
-    gap: 10px;
-}
-
-.mp-menu-container .search-form button {
-    width: 50px;
-    padding: 0 10px;
-}
-
-.mp-menu-container .search-form button svg {
-    width: 20px;
-    height: 20px;
-    margin-bottom: -5px;
-}
-
-.mp-menu-container .search-input {
-    width: 300px;
-    border: 1px solid rgba(85, 86, 90, 0.12);
-    border-radius: 5px;
-}
-
-.mp-menu-container .search-input svg {
-    margin-left: 10px; 
-    color: rgba(var(--primary-color), 0.3);
-}
-
-.mp-menu-container .search-input input {
-    margin-left: -15px; 
-    border: none;
-    background-color: transparent;
-}
-
-.mp-menu-container .search-input input:focus,
-.mp-menu-container .search-input input:active {
-    background-color: transparent;
-}
-
 .mp-button-container, 
 .mp-button-container button,
-.mp-button-container a,
-.mp-menu-container .search-input {
+.mp-button-container a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -432,8 +393,6 @@ main {
 }
 
 
-
-
 /** USER ACCOUNT  PAGE */
 .user-account {
     padding-left: 100px;
@@ -494,8 +453,8 @@ main {
 
 /** CREATE ACCOUNT */
 .create-account {
-    width: 550px;
-    padding: 40px 80px;
+    width: 500px;
+    padding: 30px 60px;
 }
 
 .create-account form {
@@ -513,10 +472,6 @@ main {
 
 .create-account .button-control {
     margin-top: 20px;
-}
-
-.create-account .button-control button {
-    padding: 8px 15px;
 }
 
 
@@ -599,8 +554,8 @@ main {
 }
 
 .modal-header button svg {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
 
 .modal-header button:hover svg {
@@ -657,20 +612,55 @@ main {
 
 
 
+/* QUOTE RECEIVED PAGE */
+.quote-list table tr:nth-child(7),
+.quote-list table tr:nth-child(8),
+.quote-list table tr:nth-child(11),
+.quote-list table tr td:nth-child(7),
+.quote-list table tr td:nth-child(8),
+.quote-list table tr td:nth-child(11){
+    text-align: center;
+}
 
+.quote-list table tr td:nth-child(1){
+    width: 2%;
+}
+.quote-list table tr td:nth-child(2){
+    width: 10%;
+}
+.quote-list table tr td:nth-child(3) {
+    width: 9%;
+}
+.quote-list table tr td:nth-child(4),
+.quote-list table tr td:nth-child(5){
+    width: 8%;
+}
+.quote-list table tr td:nth-child(6){
+    width: 18%;
+}
 
+.quote-list table tr td:nth-child(7) {
+    width: 5%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.quote-list table tr td:nth-child(8){
+    width: 2%;
+}
+.quote-list table tr td:nth-child(9){
+    width: 27%;
+}
+.quote-list table tr td:nth-child(10){
+    width: 6%;
+}
+.quote-list table tr td:nth-child(11) {
+    width: 5%;
+}
+.quote-list table tr td:nth-child(11) > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
 
 
 
@@ -701,4 +691,47 @@ footer {
 
 .page-title h1 { 
     line-height: 150%;
+}
+
+
+
+
+
+/* SEARCH FORM */
+.search-form {
+    display: flex;
+    gap: 5px;
+}
+
+.search-form button {
+    width: 50px;
+    padding: 0 10px;
+}
+
+ .search-input {
+    width: 300px;
+    border: 1px solid rgba(85, 86, 90, 0.12);
+    border-radius: 5px;
+}
+
+.search-input svg {
+    margin-left: 10px; 
+    color: rgba(var(--primary-color), 0.3);
+}
+
+.search-input input {
+    margin-left: -15px; 
+    border: none;
+    background-color: transparent;
+}
+
+.search-input input:focus,
+.search-input input:active {
+    background-color: transparent;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

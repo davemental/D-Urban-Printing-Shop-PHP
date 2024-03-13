@@ -15,8 +15,6 @@ const scrollFunction = () => {
     }
 }
 
-// window.onscroll = () => scrollFunction();
-
 const strip_tags = (str, allow) => {
     // making sure the allow arg is a string containing only tags in lowercase (<a><b><c>)
     allow = (((allow || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
@@ -72,117 +70,6 @@ const ajax = async (config) => {
     }
 }
 
-const deleteProduct = async (itemArr) => {
-    let endPoint = '';
-    const url = window.location.href;
-    const formData = new FormData();
-
-    Array.prototype.forEach.call(itemArr, item => {
-        formData.append('id[]', item.id);
-        formData.append('featured_img[]', item.featured_img);
-    });
-  
-    if (url.includes('page')) {
-        endPoint = '../delete-product';
-    } else {
-        endPoint = 'delete-product';
-    }
-
-    // return the promise
-    return fetch(endPoint, {
-        body: formData,
-        method: "POST",
-    }).then(res => res.json()).then(res => {
-        return res;
-    }).catch(err => {
-        console.log(err)
-        return err;
-    });
-}
-
-// PRODUCT SEARCHING
-const searchProduct = () => {
-
-    const { product_key } = document.querySelector('[data-search_form]');
-    
-    if (product_key.value.trim() === "") {
-        alertify.set("notifier", "position", "top-right");
-        alertify.error("Empty search box");
-        product_key.focus();
-        return;
-    }
-
-    const formData = new FormData();
-
-    formData.append('product_key', strip_tags(product_key.value));
-
-    ajax({
-        url: "search-product",
-        headers: {
-            body: formData,
-            method: "POST",
-            contentType: false,
-        },
-        success(data) { 
-            
-            let productTable = document.querySelector('.product-list table');
-           
-            //remove all rows
-            while (productTable.rows.length > 1) {
-                productTable.deleteRow(1);
-            }
-
-            if (data["products"].length > 0) {
-
-                // Re-render search to DOM
-                data["products"].forEach(item => {
-
-                    let newCol = document.createElement('tr');
-                    newCol.setAttribute('data-id', item.id);
-                    newCol.setAttribute('data-title', item.title);
-                    newCol.setAttribute('data-featured_img', item.featured_img);
-
-                    newCol.innerHTML = `
-                        <td><input class="check_item" type="checkbox" name="check"></td>
-                        <td>${item.id}</td>
-                        <td>${item.title}</td>
-                        <td>${strip_tags(item.description)} </td>
-                        <td><img src="${data["app_url"]}/public/images/uploads/products/${item.featured_img}" alt="" /></td>
-                        <td>${humanReadableTime(item.date_entry)}</td>
-                        <td>
-                            <div>
-                                <a href="${data["app_url"]}edit-product/${item.id}" class="primary-action-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 -960 960 960" width="15">
-                                        <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/>
-                                    </svg>
-                                </a>
-                                <button class="primary-action-btn delete_btn" data-delete_btn>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 -960 960 960" width="15">
-                                        <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </td>`;
-                        
-                    productTable.querySelector('tbody').appendChild(newCol);
-                });
-
-            } else {
-
-                let newCol = document.createElement('tr');
-                newCol.innerHTML = `
-                    <td colspan="7">No results found<br>
-                    Try different or more general keywords</td>
-                `;
-                productTable.querySelector('tbody').appendChild(newCol);
-            }
-        },
-        error(err) {
-            console.log(err);
-        }
-    })
-}
-
 const showAlert = (title,message) => {
     alertify.alert()
     .setting({
@@ -233,8 +120,6 @@ export {
     humanReadableTime,
     addEventOnElements,
     ajax,
-    deleteProduct,
-    searchProduct,
     showAlert,
     changeActiveStatusOfMainNav,
     isUserNameValid

@@ -6,7 +6,7 @@
     /* COLORS */
     --black: 13, 16, 19;
 
-    --header-bg: rga(VAR(--black));
+    --header-bg: rgb(VAR(--black));
 
     /* BACKGROUND BUTTON */
     --primary-btn-bg: 211, 59, 74;
@@ -391,7 +391,9 @@ button.secondary-btn:disabled {
     color: rgba(var(--primary-color), 0.5);
  }
 
- .primary-btn, .secondary-btn, .primary-outline-btn {
+ .primary-btn, 
+ .secondary-btn, 
+ .primary-outline-btn {
     width: 100%;
     white-space: nowrap;
     font-weight: 500;
@@ -423,20 +425,38 @@ button.secondary-btn:disabled {
 }
 
 .secondary-btn svg {
+  width: 15px;
+  height: 15px;
   fill: #fff;
 }
 
-.secondary-btn.center {
+.primary-btn.center,
+.secondary-btn.center,
+.primary-outline-btn.center {
   justify-content: center;
 }
 
-.secondary-btn:hover, .primary-outline-btn:hover {
+.primary-btn:hover.danger svg,
+.secondary-btn:hover.danger svg,
+.primary-outline-btn:hover.danger svg, 
+.primary-action-btn:hover.danger svg{
+  fill: red;
+  color: red;
+}
+
+.secondary-btn:hover, 
+.primary-outline-btn:hover {
     background-color: rgba(var(--secondary-btn-bg), 0.55);
     border: 1px solid rgb(var(--secondary-btn-bg));
 }
 
 .primary-outline-btn {
     border: 1px solid rgba(var(--secondary-btn-bg), 0.35);
+}
+
+.primary-outline-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .primary-action-btn {
@@ -451,11 +471,6 @@ button.secondary-btn:disabled {
     width: 20px;
     height: 20px;
     fill: rgba(var(--primary-color), 0.4);
- }
-
- .primary-action-btn:hover  {
-    background-color: rgba(var(--secondary-btn-bg), 0.3);
-    border: 1px solid rgba(var(--secondary-btn-bg), 0.4);
  }
 
  .primary-action-btn:hover  svg  { 

@@ -11,14 +11,13 @@ import {
 const btnSave = document.querySelector("[data-save]");
 btnSave?.addEventListener("click", ev => {
     ev.preventDefault();
-
     handleSaveAccount();
 })
 
 function handleSaveAccount() {
 
     const form = document.querySelector(".user-account form");
-    const { username, name, email, password, retype_password } = form;
+    const { id, username, name, email, password, retype_password } = form;
 
     let errMsg = [];
 
@@ -59,7 +58,7 @@ function handleSaveAccount() {
         formData.append('name', strip_tags(name.value));
         formData.append('email', email.value);
         formData.append('password', password.value);
-        formData.append('id', 1);
+        formData.append('id', id.value);
 
         ajax({
             url: "update-user-account",
