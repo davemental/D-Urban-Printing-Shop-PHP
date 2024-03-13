@@ -4,9 +4,9 @@
 
 :root {
     /* COLORS */
-    --black: #0d1013;
+    --black: 13, 16, 19;
 
-    --header-bg: VAR(--black);
+    --header-bg: rga(VAR(--black));
 
     /* BACKGROUND BUTTON */
     --primary-btn-bg: 211, 59, 74;
@@ -399,6 +399,10 @@ button.secondary-btn:disabled {
     padding: 1.3rem 3rem;
     border-radius: 6px;
     color: rgba(var(--primary-color));
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .primary-btn {
@@ -416,6 +420,14 @@ button.secondary-btn:disabled {
     background-color: rgba(var(--secondary-btn-bg), 0.8);
     border: 1px solid rgb(var(--secondary-btn-bg));
     color: #fff;
+}
+
+.secondary-btn svg {
+  fill: #fff;
+}
+
+.secondary-btn.center {
+  justify-content: center;
 }
 
 .secondary-btn:hover, .primary-outline-btn:hover {
@@ -482,8 +494,8 @@ table {
 }
 
 table thead {
-  background-color: #f8f8f8;
-  border-bottom: 1px solid rgba(85, 86, 90, 0.10);
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #dbdbdb;
 }
 
 table thead th {
@@ -495,12 +507,17 @@ table thead th {
 }
 
 table tbody tr {
-  border-bottom: 1px solid rgba(85, 86, 90, 0.10);
+  border-bottom: 1px solid rgba(219, 219, 219, 0.6);
+  font-size: 1.3rem;
 }
 
 table tbody tr:hover {
   cursor: pointer;
   background-color: rgba(248, 248, 248, 0.8);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgba(248, 248, 248, 0.5);
 }
 
 table tr td {

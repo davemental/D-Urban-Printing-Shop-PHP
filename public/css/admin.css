@@ -492,10 +492,168 @@ main {
 }
 
 
+/** CREATE ACCOUNT */
+.create-account {
+    width: 550px;
+    padding: 40px 80px;
+}
+
+.create-account form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-account form label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(var(--black), 0.6);
+}
+
+.create-account .button-control {
+    margin-top: 20px;
+}
+
+.create-account .button-control button {
+    padding: 8px 15px;
+}
 
 
+/* ALERTIFY MODAL PLUGIN */
+.alertify .ajs-dialog {
+    top: 25%;
+    transform: -50%, -50%;
+}
 
 
+/* MODAL */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh; /* for mobile scrren */
+    background-color: rgb(var(--black));
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: 400ms cubic-bezier(0, 0, 1, 1);
+    transition-property: opacity, visibility;
+}
+
+.overlay:not(.modal-overlay) {
+    display: none;
+}
+
+.modal-overlay {
+    z-index: 3;
+    visibility: visible;
+    animation: fade-overlay 400ms cubic-bezier(0, 0, 1, 1)
+        forwards;
+}
+
+@keyframes fade-overlay {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    animation: modal-open ease linear
+      forwards;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid rgba(219, 219, 219, 0.9);
+    box-shadow: 0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d;
+    border-radius: 8px;
+}
+
+.modal-header {
+    position: fixed;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.modal-header {
+    top: 0;
+    padding: 20px;
+}
+
+.modal-header button  {
+    border: none;
+    background-color: none;
+}
+
+.modal-header button svg {
+    width: 40px;
+    height: 40px;
+}
+
+.modal-header button:hover svg {
+    fill: red;
+}
+
+@keyframes modal-open {
+    0% {
+        transform: -50%, -50%;
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+/* LOGIN FORM */
+.login-container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+
+    border: 1px solid #dbdbdb;
+    padding: 30px 40px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 0 16px 0 rgba(0,0,0,0.41); 
+    box-shadow: 0px 0 16px 0 rgba(0,0,0,0.41);
+}
+
+.login-container form { 
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-container form label {
+    display: inline-block;
+    font-size: 1.4rem;
+    color: rgba(var(--black), 0.6);
+    margin-bottom: 5px;
+}
+
+.login-container form button {
+    padding: 8px 15px;
+}
 
 
 
@@ -520,6 +678,10 @@ main {
 
 /* FOOTER */
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
     height: var(--footer-height);
     display: flex;
     justify-content: center;

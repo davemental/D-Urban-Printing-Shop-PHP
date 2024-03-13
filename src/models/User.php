@@ -37,6 +37,13 @@ class User {
         }
     }
 
+    public function verifyLogin($username, $password) {
+        $this->db->query("SELECT * FROM user_accounts WHERE (username = :username OR email = :username) AND password = :password");
+        $this->db->bind(":username", $username);
+        $this->db->bind(":password", md5($password));
+        return $this->db->singleResult();
+    }
+
     public function getAllUser()
     {
         $this->db->query("SELECT * FROM user_accounts ORDER BY name ASC");

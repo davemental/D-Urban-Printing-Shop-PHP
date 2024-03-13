@@ -20,9 +20,11 @@ $routes = [
     "/upload-image-carousel"=> "AdminController@uploadImageCarousel",
     "/request"=> "AdminController@request",
     "/manage-users" => "AdminController@users",
+    "/create-new-user-account"=> "AdminController@createNewUserAccount",
     "/account" => "AdminController@userAccount",
     "/update-user-account"=> "AdminController@updateAccount",
     "/settings" => "AdminController@settings",
-
-
+    "/admin-login"=> "AdminController@login",
+    "/account-login-request"=> "AdminController@loginRequest",
+    "/admin-logout"=> "AdminController@logout"
 ];

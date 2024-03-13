@@ -48,7 +48,7 @@
             <div class="user-sub-menu">
                 <nav>
                     <a href="<?php echo APP_URL;?>account">My Account</a>
-                    <a href="#">Log out</a>
+                    <a href="#" data-logout_btn>Log out</a>
                 </nav>
             </div>
         </div>

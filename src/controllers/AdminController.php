@@ -16,21 +16,69 @@ class AdminController extends RenderView {
         header("location: " . APP_URL);
     }
 
+    public function login(){
+
+        $auth = $this->authenticated;
+
+        if ($auth== 1) { // redirect to admin page if logged in
+            header("location: ". APP_URL . "admin");
+        }
+
+        $this->loadView("pages/admin/admin-login", [
+            "title" => "Account Login"
+        ]);
+    }
+
+    public function loginRequest() {
+
+        $msg = [];
+        $user = new User();
+
+        if (!isset($_POST["username"]) || empty($_POST["username"])) {
+            $msg['error'] = "Username is required";
+        } else if (!isset($_POST["password"]) || empty($_POST["password"])) {
+            $msg['error'] = "Password is required"; 
+        } else {
+
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            $user = $user->verifyLogin($username, $password);
+
+            if ($user) {
+                $msg['success'] = "Account successfully login ";
+                $_SESSION['user_id'] = $user->id;
+            } else {
+                $msg['error'] = "Error encountered! Account don't exist";
+            }
+        }
+        echo json_encode($msg);
+
+    }
 
     public function index() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Dashboard",
         ]);
 
-        $this->loadView("pages/admin/index", [
-            "active_class" => "active",
-        ]);
+        $this->loadView("pages/admin/index", []);
 
         $this->loadView("pages/partials/admin-footer", []);
     }
 
     public function products() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $this->loadView("pages/partials/admin-header", [
             "title" => "Product Management",
         ]);
@@ -66,6 +114,12 @@ class AdminController extends RenderView {
     }
 
     public function addProduct() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+        
         $this->loadView("pages/partials/admin-header", [
             "title" => "Add Product",
         ]);
@@ -196,8 +250,12 @@ class AdminController extends RenderView {
         echo json_encode($msg);
     }
 
-    public function editProduct($id)
-    {
+    public function editProduct($id){
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         // get product information from db
         $product = new Product();
         $productData = $product->getProductById($id[0]);
@@ -324,6 +382,11 @@ class AdminController extends RenderView {
 
     public function imageCarousel() {
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $this->loadView("pages/partials/admin-header", [
             "title" => "Image Carousel Settings",
         ]);
@@ -398,6 +461,11 @@ class AdminController extends RenderView {
 
     public function request() {
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $this->loadView("pages/partials/admin-header", [
             "title" => "Form Request Received",
         ]);
@@ -409,6 +477,11 @@ class AdminController extends RenderView {
     }
 
     public function users() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Manage Users",
@@ -424,7 +497,42 @@ class AdminController extends RenderView {
         $this->loadView("pages/partials/admin-footer", []);
     }
 
+    public function createNewUserAccount(){
+
+        $msg = [];
+        $user = new User();
+
+        if (!isset($_POST["username"]) || empty($_POST["username"])) {
+            $msg['error'] = "Username is required";
+        } else if (!isset($_POST["name"]) || empty($_POST["name"])) {
+            $msg['error'] = "Name is required";
+        } else if (!isset($_POST["email"]) || empty($_POST["email"])) {
+            $msg['error'] = "Email is required"; 
+        } else if (!isset($_POST["password"]) || empty($_POST["password"])) {
+            $msg['error'] = "Password is required"; 
+        } else {
+
+            $username = $_POST["username"];
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            if ($user->create($username, $name, $email, $password)) {
+                $msg['success'] = "Account successfully created";
+            } else {
+                $msg['error'] = "Error encountered while saving account";
+            }
+        }
+        echo json_encode($msg);
+        
+    }
+
     public function userAccount() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "User Account",
@@ -469,6 +577,11 @@ class AdminController extends RenderView {
 
     public function settings() {
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $this->loadView("pages/partials/admin-header", [
             "title" => "Application Settings",
         ]);
@@ -478,4 +591,5 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-footer", []);
     }
+
 }
