@@ -7,6 +7,9 @@ $routes = [
     "/get-a-quote" => "HomeController@getQuote",
     "/about-us" => "HomeController@aboutUs",
     "/faqs" => "HomeController@faqs",
+    "/submit-contact-form" => "HomeController@submitContactForm",
+    "/submit-inquiry-form" => "HomeController@submitInquiryForm",
+    "/request-product-search" => "HomeController@requestProductSearch",
 
     "/admin" => "AdminController@index",
     "/manage-products" => "AdminController@products",

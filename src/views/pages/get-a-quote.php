@@ -5,66 +5,79 @@
     </div>
 
     <div class="get-quote-container bg-texture-primary">
+
         <section id="get-quote">
-            <form method="post" action="">
+            <form method="post" data-send_inquiry_form>
                 <div class="form-field">
                     <p>
-                        <label for="name">Name*</label>
-                        <input type="text" name="name" placeholder="Complete name" data-required="true"/>
+                        <label for="name">Name<span class="red">*</span></label>
+                        <input type="text" name="name" placeholder="Complete name" required/>
                     </p>
 
                     <p>
-                        <label for="email">Email*</label>
-                        <input type="email" name="email" placeholder="example@gmail.com" data-required="true"/>
+                        <label for="email">Email<span class="red">*</span></label>
+                        <input type="email" name="email" placeholder="example@gmail.com" required/>
                     </p>
                 </div>
 
                 <div class="form-field">
                     <p>
-                        <label for="contact_number">Contact Number*</label>
-                        <input type="text" name="contact_number" placeholder="000-000-0000" data-required="true"/>
+                        <label for="contact_number">Contact Number<span class="red">*</span></label>
+                        <input type="text" name="contact_number" placeholder="000-000-0000" required/>
                     </p>
 
                     <p>
                         <label for="company">Company/Organization</label>
-                        <input type="text" name="company" placeholder="N/A" data-required="false"/>
+                        <input type="text" name="company" placeholder="N/A"/>
                     </p>
                 </div>
 
                 <div>
-                    <label for="delivery_address">Delivery Address*</label>
-                    <input type="text" name="delivery_address" placeholder="Complete Delivery Address" data-required="true"/>
+                    <label for="delivery_address">Delivery Address<span class="red">*</span></label>
+                    <input type="text" name="address" placeholder="Complete Delivery Address" required/>
                 </div>
 
                 <div class="form-field">
                     <p>
-                        <label for="product">Select Product*</label>
-                        <select name="product" data-required="true"/>
-                            <option value="0">Please Select</option>
+                        <label for="product">Select Product<span class="red">*</span></label>
+                        <select name="product" required/>
+                            <?php 
+
+                                if (count($productData) > 0) {
+                                    foreach ($productData as $item) {
+                                        echo '<option value="'.$item->title.'">'.$item->title.'</option>';
+                                    }
+                                }
+                            ?>
                         </select>
                     </p>
 
                     <p>
-                        <label for="quantity">Quantity*</label>
-                        <input type="Number" name="quantity" placeholder="0" data-required="true"/>
+                        <label for="quantity">Quantity<span class="red">*</span></label>
+                        <input type="number" name="quantity" placeholder="0" data-required="true"/>
                     </p>
                 </div>
 
                 <div>
-                    <label for="details">Details</label>
-                    <textarea rows="8" name="details" data-required="false"></textarea>
+                    <label for="details">Details<span class="red">*</span></label>
+                    <textarea rows="8" name="details" placeholder="Please described your order details" required></textarea>
                 </div>
 
                 <div>
-                    <label for="file_upload">Upload Logo/Custom Design/Sample (png/jpg/pdf)</label>
-                    <input type="file" name="file_upload" data-required="false"/>
+                    <label for="file_upload">Upload Logo/Custom Design/Sample (png/jpg)</label>
+                    <input type="file" name="file_upload" accept=".jpg, .jpeg, .png, .webp|image/*" />
                 </div>
 
                 <div>
-                    <input class="primary-btn" type="submit" name="submit" value="Send Inquiry"/>
+                    <button class="primary-btn" data-send_inquiry>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                            <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/>
+                        </svg>
+                        <span>Send Inquiry</span>
+                    </button>
                 </div>
-
             </form>
+
         </section>
     </div>
 

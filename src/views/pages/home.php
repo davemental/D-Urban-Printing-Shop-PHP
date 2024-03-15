@@ -1,5 +1,6 @@
 <main data-main>
-    <section id="home">
+
+    <section id="home" class="bg-texture-primary">
 
         <!-- FEATURED PRODUCT IMAGE CAROUSEL -->
         <div class="carousel-wrapper" js-carousel-wrapper>
@@ -21,13 +22,12 @@
                 } else {
                 echo '
                     <div class="carousel-item" js-carousel-item>
-                        <img src="'. APP_URL .'/public/images/carousel/no-image.jpg" alt="">
+                        <img src="'. APP_URL .'/public/images/no-image.jpg" alt="">
                     </div>
                     ';
                 }
                
             ?>
-
             <!-- Navigation Arrows -->
             <button type="button" class="carousel-arrow prev" data-carousel-arrows data-dir="prev"> &#x2039; </button>
             <button type="button" class="carousel-arrow next" data-carousel-arrows data-dir="next"> &#x203A; </button>
@@ -41,63 +41,66 @@
                 <button type="button" class="dots" js-data-dots data-dots-index="5"> </button>
             </div>
         </div>
-
-
     </section>
 
     <div class="page-title-container">
-        <h1 class="text-title-xl"><b>PROFESSIONAL. FAST. QUALITY.</b></h1>
+        <h2 class="text-title-xl"><b>WHAT WE OFFER</b></h2>
         <p class="text-body-m">
-            D-Urban Print can help you in many ways. We make it easy and fast for you to get your business up and running and ready for growth!
-        </p>
-        <h2 class="text-title-l"><b>WHAT WE OFFER</b></h2>
+            D-Urban Print can provide high quality product without compromised. <br>
+            We also cater based on your needs. Your ideas we can make it reality.
+        </p> 
     </div>
-
 
     <section id="products">
         <div class="product-list">
             <?php 
-                
-                foreach($productData as $item) {
-
-                echo '<article class="item-container">
-                        <div class="item shrink-on-hover">
-                            <a href="' .APP_URL .'product-item?id= ' . $item->id . '" class="item-anchor" aria-label=""></a>
-                            <img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" />
-                        </div>
-                    </article>';
+                if (count($productData) > 0) {
+                    foreach($productData as $item) {
+                        echo '<article class="item-container">
+                                <div class="item shrink-on-hover">
+                                    <a href="' .APP_URL .'product-item?id= ' . $item->id . '" class="item-anchor" aria-label=""></a>
+                                    <img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" />
+                                </div>
+                            </article>';
+                        }
+                } else {
+                    echo '<article class="item-container">
+                            <div class="item shrink-on-hover">
+                                <a href="#" class="item-anchor" aria-label=""></a>
+                                <img src="' .APP_URL .'/public/images/no-image2.jpg" alt="" />
+                            </div>
+                        </article>';
                 }
             ?>
         </div>
 
-        <div class="m-m">
-            <a href="<?php echo APP_URL; ?>products" class="primary-btn" alt="all products">ALL PRODUCTS</a>
+        <div class="bottom-page-container">
+            <a href="<?php echo APP_URL; ?>products" class="primary-btn center wl" alt="all products">ALL PRODUCTS</a>
         </div>
     </section>
 
-    
-    <section id="about">
-        <div class="about-bg-con">
-            <div class="about-container">
-                <div class="about-container-l">
-                    <span class="primary-wrapper text-title-l">
-                        WHO WE ARE
-                    </span>
-                    <p class="about-description text-body-m">
-                       D-Urban Print has been recognized and trusted manufacturing company that specialize in mass production of customized apparels such as company uniforms and promotional giveaways at a very competitive price without compromising the quality.
-                    </p>
-                    
-                    <a href="<?php echo APP_URL; ?>about-us" class="primary-btn text-body-m" alt="Learn more">
-                        LEARN MORE
-                    </a>
-                </div>
+    <section id="about" class="bg-texture-secondary">
+        <div class="about-container">
+            <div class="about-container-l">
+                <span class="primary-wrapper text-title-l">
+                    WHO WE ARE
+                </span>
+                <p class="about-description text-body-m">
+                    D-Urban Print has been recognized and trusted manufacturing company in the Province of Bukidnon 
+                    that specialize in mass production of customized apparels such as company uniforms, sports ware,
+                    promotional giveaways and many more at a very competitive price without compromising the quality.
+                </p>
                 
-                <div class="about-container-r">
-                    <video width="320" height="240" autoplay muted controls>
-                        <source src="<?php echo APP_URL; ?>\public\videos\vid1.mp4" type="video/mp4">
-                        Your browser does not support the video tag
-                    </video>
-                </div>
+                <a href="<?php echo APP_URL; ?>about-us" class="primary-btn text-body-m" alt="Learn more">
+                    LEARN MORE
+                </a>
+            </div>
+            
+            <div class="about-container-r">
+                <video width="320" height="240" autoplay muted controls>
+                    <source src="<?php echo APP_URL; ?>\public\videos\vid1.mp4" type="video/mp4">
+                    Your browser does not support the video tag
+                </video>
             </div>
         </div>
     </section>
@@ -164,16 +167,15 @@
             </div>
 
             <div class="qoute-subcon-r">
-                <form class="form-secondary" method="post" action="">
-                    <input type="text" name="" id="" placeholder="Name *" /> 
-                    <input type="email" name="" id="" placeholder="Email *" /> 
-                    <input type="text" name="" id="" placeholder="Contact Number *" /> 
-                    <textarea name="" rows="6" placeholder="Message"></textarea>
-                    <input type="submit" class="primary-btn" />
+                <form class="form-secondary" method="post" action="" data-contact_form>
+                    <input type="text" name="name" id="" placeholder="Name *" required/> 
+                    <input type="email" name="email" id="" placeholder="Email *" required/> 
+                    <input type="text" name="contact_number" id="" placeholder="Contact Number *" required/> 
+                    <textarea name="message" rows="6" placeholder="Message *" required></textarea>
+                    <button class="primary-btn center" data-submit_btn>Submit</button>
                 </form>
             </div>
         </div>
-        
     </section>
 
     <!-- Image Carousel JS Script -->

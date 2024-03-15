@@ -1,24 +1,9 @@
 <?php
 
-session_start();
-
 class HomeController extends RenderView {
-
-    private $authenticated;
-
-    public function __construct()
-    {
-        $this->authenticated = isset($_SESSION["user_id"]) && $_SESSION["user_id"] > 0  ?  1 : 0;
-    }
-
-    public function logout() {
-        unset($_SESSION["user_id"]);
-        header("location: " . APP_URL);
-    }
 
     // Home Page
     public function index() {
-
         $this->loadView("pages/partials/header", [
             "title" => "Home Page",
         ]);
@@ -32,6 +17,113 @@ class HomeController extends RenderView {
         ]);
 
         $this->loadView("pages/partials/footer", []);
+    }
+
+    // this will received and save to db the contact form request data in home page
+    public function submitContactForm(){
+        
+        $msg = [];
+        $user = new Quote();
+
+        if (!isset($_POST["name"]) || empty($_POST["name"])) {
+            $msg['error'] = "name is required";
+        } else if (!isset($_POST["email"]) || empty($_POST["email"])) {
+            $msg['error'] = "Email is required";
+        } else if (!isset($_POST["contact_number"]) || empty($_POST["contact_number"])) {
+            $msg['error'] = "Contact number is required"; 
+        } else if (!isset($_POST["message"]) || empty($_POST["message"])) {
+            $msg['error'] = "Your inquiry message/details is required"; 
+        } else {
+
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $contact_number = $_POST["contact_number"];
+            $message = $_POST["message"];
+
+            if ($user->saveContactRequest($name, $email, $contact_number, $message)) {
+                $msg['success'] = "Thank you very much, your request has been sent. Kindly wait for a few moments for our reply.";
+
+                // send copy to email address
+            } else {
+                $msg['error'] = "Some problems encountered while sending your request. Please try again later";
+            }
+        }
+        echo json_encode($msg);
+    }
+    
+    // this will received and save to db the send inquiry received from get a quote page
+    public function submitInquiryForm() {
+
+        $msg = [];
+        $user = new Quote();
+
+        if (!isset($_POST["name"]) || empty($_POST["name"])) {
+            $msg['error'] = "Name is required";
+        } else if (!isset($_POST["email"]) || empty($_POST["email"])) {
+            $msg['error'] = "Email is required";
+        } else if (!isset($_POST["contact_number"]) || empty($_POST["contact_number"])) {
+            $msg['error'] = "Contact number is required";  
+        } else if (!isset($_POST["address"]) || empty($_POST["address"])) {
+            $msg['error'] = "Address is required";
+        } else if (!isset($_POST["product"]) || empty($_POST["product"])) {
+            $msg['error'] = "Selected product is required"; 
+        } else if (!isset($_POST["quantity"]) || empty($_POST["quantity"])) {
+            $msg['error'] = "Estimated order quantity is required"; 
+        } else if (!isset($_POST["details"]) || empty($_POST["details"])) {
+            $msg['error'] = "Your inquiry message/details is required"; 
+        } else {
+
+            $string_helper = new StringHelper();
+            $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/quote-file/';
+
+            $name = $_POST["name"];
+            $email = $_POST["email"];
+            $contact_number = $_POST["contact_number"];
+            $company =  $_POST["company"] = isset($_POST["company"]) ? $_POST["company"] : "";
+            $address = $_POST["address"];
+            $product = $_POST["product"];
+            $quantity = $_POST["quantity"];
+            $details = $_POST["details"];
+            $file_uploadArr = $_FILES["file_upload"];
+
+            $file_upload_fn = "";
+
+            // upload only if has a file
+            if (!empty(array_filter($file_uploadArr))) {
+                // change file name for feature image
+                $file_upload_fn = $string_helper->changeFileName($file_uploadArr["name"][0]);
+                //uploading featured images
+                move_uploaded_file($file_uploadArr["tmp_name"][0], $uploadDir . $file_upload_fn);
+            }
+            
+            // save data to db
+            if ($user->saveSendInquiryRequest($name, $email, $contact_number, $company, $address, $product, $quantity, $details, $file_upload_fn)) {
+                $msg['success'] = "Thank you very much, your request has been sent. Kindly wait for a few moments for our reply.";
+
+                // send copy to email address
+            } else {
+                $msg['error'] = "Some problems encountered while sending your request. Please try again later";
+            }
+        }
+        echo json_encode($msg);
+    }
+
+    public function requestProductSearch() {
+
+        $product = new Product();
+        $productData = [];
+
+        if (!(isset($_POST['search_key'])) || !(empty($_POST['search_key']))) {
+
+            $productKey = $_POST['search_key'];
+            $productKey = preg_replace('/[^A-Za-z0-9\s]/', '', $productKey); // clean the search key
+
+            // get records
+            $productData = $product->getProductByName($productKey);
+         }
+
+         echo json_encode($productData);
+           
     }
 
     //products page
@@ -77,7 +169,12 @@ class HomeController extends RenderView {
             "title" => "Get a Quote",
         ]);
 
-        $this->loadView("pages/get-a-quote", []);
+        $product = new Product();
+        $all_products = $product->getAllProducts();
+
+        $this->loadView("pages/get-a-quote", [
+            "productData" => $all_products
+        ]);
 
         $this->loadView("pages/partials/footer", []);
     }
@@ -94,7 +191,6 @@ class HomeController extends RenderView {
     }
 
     public function faqs(){
-
         $this->loadView("pages/partials/header", [
             "title" => "Frequently Asked Questions",
         ]);
@@ -103,9 +199,5 @@ class HomeController extends RenderView {
 
         $this->loadView("pages/partials/footer-quick-contact", []);
         $this->loadView("pages/partials/footer", []);
-        
     }
-
-
-
 }

@@ -15,6 +15,7 @@ const scrollFunction = () => {
     }
 }
 
+/** this function strips all html tag and return string with alpha numeric value */
 const strip_tags = (str, allow) => {
     // making sure the allow arg is a string containing only tags in lowercase (<a><b><c>)
     allow = (((allow || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
@@ -25,6 +26,11 @@ const strip_tags = (str, allow) => {
     return allow.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 :'';
     });
 }
+
+/** accept string and remove all special characters and return alpha numeric characters */
+const removeSpecials = (str) => {
+    return str.replace(/[^\p{L}\d\s]+/gu, "");
+};
 
 const humanReadableTime = (date) => {
     
@@ -68,6 +74,14 @@ const ajax = async (config) => {
     } catch(err) {
         config.error(err);
     }
+}
+
+function debounce(callback, wait) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () { callback.apply(this, args); }, wait);
+    };
 }
 
 const showAlert = (title,message) => {
@@ -117,9 +131,11 @@ const changeActiveStatusOfMainNav = () => {
 export {
     scrollFunction,
     strip_tags,
+    removeSpecials,
     humanReadableTime,
     addEventOnElements,
     ajax,
+    debounce,
     showAlert,
     changeActiveStatusOfMainNav,
     isUserNameValid

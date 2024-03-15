@@ -20,7 +20,6 @@
                 <?php 
                     $sample_images = explode(', ', $productData->sample_img);
                     foreach ($sample_images as $item) {
-
                         echo ' <article class="item-container">
                             <div class="item shrink-on-hover">
                                 <a data-fslightbox href="'. APP_URL .'/public/images/uploads/products/'. $item .'" class="item-anchor" aria-label=""></a>
@@ -32,10 +31,10 @@
             </div>
         </div>
 
-        <div class="customize-getquote">
+        <div class="bottom-page-container">
             <a href="<?php echo APP_URL; ?>get-a-quote" class="primary-btn" aria-label="">Request A Free Quote Now</a>
         </div>
     </section>
 </main>
 
-<script src="<?php echo APP_URL; ?>/public/js/fslightbox.js"></script>
+<script src="<?php echo APP_URL; ?>/public/js/plugins/fslightbox.js"></script>

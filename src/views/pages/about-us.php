@@ -1,7 +1,7 @@
 <main data-main class="bg-texture-primary">
 
     <div class="page-title-container">
-        <h1 class="text-title-xl"><b>WE ARE D-URBAN</b></h1>
+        <h1 class="text-title-xl"><b>WE ARE URBAN PRINTS</b></h1>
     </div>
 
     <section id="about-us">
@@ -11,7 +11,7 @@
                 We take great pride in every product and services that our team provide. We guarantee quality, professionalism and customer’s satisfaction. 
                 Driven by our goal to be the No.1 trusted manufacturer of sublimated uniforms nationwide.
 
-                <br><br>We specialise in mass manufacturing of custom made, high quality and full-bleed sublimation apparels consisting of department school uniforms, company souvenirs and plenty of more. We provide offerings that may meet any agency`s call for accordance together along with your needs, specifications, requests or budget.
+                <br><br>We specialize in mass manufacturing of custom made, high quality and full-bleed sublimation apparels consisting of department school uniforms, sports apparel, company souvenirs and plenty of more. We provide offerings that may meet any agency`s call for accordance together along with your needs, specifications, requests or budget.
             </div>
             
             <div class="about-us-vcon">

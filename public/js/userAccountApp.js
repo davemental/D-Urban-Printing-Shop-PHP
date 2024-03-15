@@ -3,7 +3,7 @@
 /** IMPORT MODULES */
 import {
     showAlert,
-    strip_tags,
+    removeSpecials,
     ajax,
     isUserNameValid
 } from "./utils.js";
@@ -55,7 +55,7 @@ function handleSaveAccount() {
         const formData = new FormData();
         
         formData.append('username', username.value.replace(/\s/g, ""));
-        formData.append('name', strip_tags(name.value));
+        formData.append('name', removeSpecials(name.value));
         formData.append('email', email.value);
         formData.append('password', password.value);
         formData.append('id', id.value);

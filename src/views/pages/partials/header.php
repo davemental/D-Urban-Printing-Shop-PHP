@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <title><?php echo $title; ?></title>
 
     <!-- Favicon -->
-
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
+    <!-- Alertify Plugin -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
     <!-- Main style sheet -->
     <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/global.css">
@@ -22,12 +23,10 @@
 
     <!-- Image Carousel Plugin Style -->
     <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/carousel.css">
-
-
 </head>
 <body>
     
-<header class="header-container" data-header>
+<header class="header-container bg-texture-secondary" data-header>
 
     <div class="header-banner">
         <div class="l-sub-header">
@@ -66,16 +65,21 @@
                 </div>
             </div>
 
-            <form class="search-form form-primary" method="post" action="">
+            <form class="search-form form-primary" data-search_form>
                 <div class="search-form-field">
-                    <input type="text" placeholder="Search" />
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="16" width="16">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                    </button>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                        <path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" name="search_key" placeholder="Type to Search" data-search_input/>
                 </div>
                 
+                <div class="search-results" data-search_results>
+                    <i class="text-body-s">Search Results:</i>
+                    <div data-search_results_item>
+
+                    </div>
+                    <!-- RENDER HERE THE RESULTS -->
+                </div>
             </form>
         </div>
     </div>
