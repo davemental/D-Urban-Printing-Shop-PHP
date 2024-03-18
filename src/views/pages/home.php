@@ -43,15 +43,15 @@
         </div>
     </section>
 
-    <div class="page-title-container">
+    <div class="container page-title-container">
         <h2 class="text-title-xl"><b>WHAT WE OFFER</b></h2>
         <p class="text-body-m">
-            D-Urban Print can provide high quality product without compromised. <br>
+            D-Urban Print can provide high quality product without compromised.
             We also cater based on your needs. Your ideas we can make it reality.
         </p> 
     </div>
 
-    <section id="products">
+    <section id="products" class="container">
         <div class="product-list">
             <?php 
                 if (count($productData) > 0) {
@@ -79,7 +79,7 @@
         </div>
     </section>
 
-    <section id="about" class="bg-texture-secondary">
+    <section id="about" class="container-secondary bg-texture-secondary">
         <div class="about-container">
             <div class="about-container-l">
                 <span class="primary-wrapper text-title-l">
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <section id="instant-quote">
+    <section id="instant-quote" class="container-secondary">
         <div class="in-quote-con">
             <div class="qoute-subcon-l">
                 <h2 class="text-title-l">

@@ -9,7 +9,16 @@ import {
     debounce,
 } from "./utils.js";
 
-window.onscroll = () => scrollFunction();
+window.onscroll = () => {
+    var width = window.innerWidth;
+    if (width > 1024) {
+        scrollFunction();
+    } else {
+        if (document.querySelector("[data-image-logo]").classList.contains("image-scrolled")) { 
+            document.querySelector("[data-image-logo]").classList.remove("image-scrolled");
+        }
+    }
+};
 
 const submitContactBtn = document.querySelector("[data-submit_btn]");
 const sendInquiryBtn = document.querySelector("[data-send_inquiry]");
@@ -305,3 +314,15 @@ function handleSubmitContact() {
         });
     }
 }
+
+
+/** MOBILE MENU */
+const mobileMenuBtn = document.querySelector('[data-mobile_menu_btn]');
+const menuContainer = document.querySelector('[data-mobile_menu_container]');
+mobileMenuBtn.addEventListener('click', ev => {
+    if (menuContainer.matches(".show")) {
+        menuContainer.classList.remove("show");
+    } else {
+        menuContainer.classList.add("show");
+    }
+});

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,21 +17,23 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
+    <!-- Image Carousel Plugin Style -->
+    <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/carousel.css">
+
     <!-- Main style sheet -->
     <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/global.css">
     <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/main.css">
-
-    <!-- Image Carousel Plugin Style -->
-    <link rel="stylesheet" href="<?php echo APP_URL; ?>public/css/carousel.css">
 </head>
 <body>
     
 <header class="header-container bg-texture-secondary" data-header>
 
-    <div class="header-banner">
+    <section class="header-banner">
         <div class="l-sub-header">
-            <div class="logo-container" data-image-logo><img src="<?php echo APP_URL; ?>/public/images/logo.png" alt="" />
-            </div>
+            <a href="<?php echo APP_URL; ?>">
+                <div class="logo-container" data-image-logo><img src="<?php echo APP_URL; ?>/public/images/logo.png" alt="" />
+                </div>
+            </a>
         </div>
         
         <div class="r-sub-header">
@@ -82,14 +84,36 @@
                 </div>
             </form>
         </div>
-    </div>
+    </section>
 
-    <nav class="header-navigation">
-        <a href="<?php echo APP_URL; ?>">Home</a>
-        <a href="<?php echo APP_URL; ?>products">Products</a>
-        <a href="<?php echo APP_URL; ?>get-a-quote">Get A Quote</a>
-        <a href="<?php echo APP_URL; ?>about-us">About Us</a>
-        <a href="<?php echo APP_URL; ?>faqs">FAQs</a>
-    </nav>
+    <section>
+        <nav class="header-navigation">
+            <a href="<?php echo APP_URL; ?>">Home</a>
+            <a href="<?php echo APP_URL; ?>products">Products</a>
+            <a href="<?php echo APP_URL; ?>get-a-quote">Get A Quote</a>
+            <a href="<?php echo APP_URL; ?>about-us">About Us</a>
+            <a href="<?php echo APP_URL; ?>faqs">FAQs</a>
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+        <div class="header-navigation-mobile">
+            <button data-mobile_menu_btn>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+
+            <nav class="header-navigation-mobile-menu bg-texture-secondary" data-mobile_menu_container>
+                <a href="<?php echo APP_URL; ?>">Home</a>
+                <a href="<?php echo APP_URL; ?>products">Products</a>
+                <a href="<?php echo APP_URL; ?>get-a-quote">Get A Quote</a>
+                <a href="<?php echo APP_URL; ?>about-us">About Us</a>
+                <a href="<?php echo APP_URL; ?>faqs">FAQs</a>
+            </nav>
+        </div>
+    </section>
+
 </header>
 

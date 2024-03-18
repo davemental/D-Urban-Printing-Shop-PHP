@@ -1,8 +1,8 @@
 # config
 /src/config
-.env
 
 # misc
 /public/images/carousel
 /public/images/uploads
 /public/videos
+/public/quote-file

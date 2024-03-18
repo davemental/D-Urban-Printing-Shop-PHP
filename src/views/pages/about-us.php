@@ -1,10 +1,10 @@
 <main data-main class="bg-texture-primary">
 
     <div class="page-title-container">
-        <h1 class="text-title-xl"><b>WE ARE URBAN PRINTS</b></h1>
+        <h1 class="text-title-l"><b>WE ARE URBAN PRINTS</b></h1>
     </div>
 
-    <section id="about-us">
+    <section class="about-us">
         <div class="about-us-top-con">
             <div class="text-body-m">
                 D-Urban Print is a Bukidnon based apparel company lunched in 2021. 

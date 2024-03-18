@@ -5,7 +5,7 @@
 
     <div class="product-container bg-texture-primary">
 
-        <section id="products">
+        <section class="products">
 
             <div class="product-list">
 
