@@ -319,7 +319,7 @@ function handleSubmitContact() {
 /** MOBILE MENU */
 const mobileMenuBtn = document.querySelector('[data-mobile_menu_btn]');
 const menuContainer = document.querySelector('[data-mobile_menu_container]');
-mobileMenuBtn.addEventListener('click', ev => {
+mobileMenuBtn?.addEventListener('click', ev => {
     if (menuContainer.matches(".show")) {
         menuContainer.classList.remove("show");
     } else {

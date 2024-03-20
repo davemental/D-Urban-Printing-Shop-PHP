@@ -4,6 +4,35 @@ class HomeController extends RenderView {
 
     // Home Page
     public function index() {
+
+        /** HOME PAGE VIEWS COUNTER */
+        // $date = date("Y-m-d");
+        // $user_ip = $_SERVER['REMOTE_ADDR'];
+
+        // if (!isset($_COOKIE['visitor'])) {
+        //     $time = strtotime('next day 00:00');
+
+        //     setcookie('visitor', 'hey', $time);
+        // }
+
+        // $visitor = new Visitors();
+        // if ($visitor->getRowCount() === 0) {
+        //     $visitor->create($date,  $user_ip);
+        // } else {
+        //     $result = $visitor->findIpByDate($date);
+
+        //     if (!isset ($_COOKIE['visitor'])) {
+
+        //         $new_ip = $result->ip;
+
+        //         if (!preg_match('/'.$user_ip.'/', $new_ip)) {
+        //             $new_ip .= " $user_ip";
+        //         }
+
+        //         $visitor->update($new_ip, $date);
+        //     }
+        // }
+
         $this->loadView("pages/partials/header", [
             "title" => "Home Page",
         ]);

@@ -68,13 +68,11 @@ html {
 body {
     color: rgba(var(--black), 0.8);
     font-size: 15px;
-    line-height: 1.5rem;
 }
 
-main { 
+main {
     display: block;
 }
-
 
 /*-----------------------------------*\
  #TYPOGRAPHY

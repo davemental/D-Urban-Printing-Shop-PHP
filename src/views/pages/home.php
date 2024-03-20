@@ -1,6 +1,6 @@
 <main data-main>
 
-    <section id="home" class="bg-texture-primary">
+    <section id="home">
 
         <!-- FEATURED PRODUCT IMAGE CAROUSEL -->
         <div class="carousel-wrapper" js-carousel-wrapper>
@@ -43,41 +43,45 @@
         </div>
     </section>
 
-    <div class="container page-title-container">
-        <h2 class="text-title-xl"><b>WHAT WE OFFER</b></h2>
-        <p class="text-body-m">
-            D-Urban Print can provide high quality product without compromised.
-            We also cater based on your needs. Your ideas we can make it reality.
-        </p> 
-    </div>
+    <div class="bg-texture-primary">
 
-    <section id="products" class="container">
-        <div class="product-list">
-            <?php 
-                if (count($productData) > 0) {
-                    foreach($productData as $item) {
+    
+        <div class="container page-title-container">
+            <h2 class="text-title-xl"><b>WHAT WE OFFER</b></h2>
+            <p class="text-body-m">
+                D-Urban Print can provide high quality product without compromised.
+                We also cater based on your needs. Your ideas we can make it reality.
+            </p> 
+        </div>
+
+        <section id="products" class="container">
+            <div class="product-list">
+                <?php 
+                    if (count($productData) > 0) {
+                        foreach($productData as $item) {
+                            echo '<article class="item-container">
+                                    <div class="item shrink-on-hover">
+                                        <a href="' .APP_URL .'product-item?id= ' . $item->id . '" class="item-anchor" aria-label=""></a>
+                                        <img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" />
+                                    </div>
+                                </article>';
+                            }
+                    } else {
                         echo '<article class="item-container">
                                 <div class="item shrink-on-hover">
-                                    <a href="' .APP_URL .'product-item?id= ' . $item->id . '" class="item-anchor" aria-label=""></a>
-                                    <img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" />
+                                    <a href="#" class="item-anchor" aria-label=""></a>
+                                    <img src="' .APP_URL .'/public/images/no-image2.jpg" alt="" />
                                 </div>
                             </article>';
-                        }
-                } else {
-                    echo '<article class="item-container">
-                            <div class="item shrink-on-hover">
-                                <a href="#" class="item-anchor" aria-label=""></a>
-                                <img src="' .APP_URL .'/public/images/no-image2.jpg" alt="" />
-                            </div>
-                        </article>';
-                }
-            ?>
-        </div>
+                    }
+                ?>
+            </div>
 
-        <div class="bottom-page-container">
-            <a href="<?php echo APP_URL; ?>products" class="primary-btn center wl" alt="all products">ALL PRODUCTS</a>
-        </div>
-    </section>
+            <div class="bottom-page-container">
+                <a href="<?php echo APP_URL; ?>products" class="primary-btn center wl" alt="all products">ALL PRODUCTS</a>
+            </div>
+        </section>
+    </div>
 
     <section id="about" class="container-secondary bg-texture-secondary">
         <div class="about-container">
@@ -168,10 +172,10 @@
 
             <div class="qoute-subcon-r">
                 <form class="form-secondary" method="post" action="" data-contact_form>
-                    <input type="text" name="name" id="" placeholder="Name *" required/> 
-                    <input type="email" name="email" id="" placeholder="Email *" required/> 
-                    <input type="text" name="contact_number" id="" placeholder="Contact Number *" required/> 
-                    <textarea name="message" rows="6" placeholder="Message *" required></textarea>
+                    <input type="text" name="name" id="" placeholder="Name *" minlength="8" maxlength="50" required/> 
+                    <input type="email" name="email" id="" placeholder="Email *"  minlength="8" maxlength="50" required/> 
+                    <input type="text" name="contact_number" id="" placeholder="Contact Number *" minlength="8" maxlength="50" required/> 
+                    <textarea name="message" rows="6" placeholder="Message *" minlength="8" maxlength="100" required></textarea>
                     <button class="primary-btn center" data-submit_btn>Submit</button>
                 </form>
             </div>

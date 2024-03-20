@@ -2,7 +2,9 @@
 <section class="content-wrapper">
     <div class="page-title">
         <h1><?php echo $title; ?></h1>
-        <span>This carousel will display in home page</span>
+        <p>This carousel will display in home page</p>
+        <p>To remove image, just click the "<b>X</b>" button on upper right, then click save.</p>
+        <p>Image Aspect Ratio 3:8:1 ex: 1900px X 500px</p>
     </div>
 
 

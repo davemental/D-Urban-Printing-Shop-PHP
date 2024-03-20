@@ -206,6 +206,7 @@ const handleSearchQuote = () => {
                         <td>${item.quantity}</td>
                         <td>${item.details}</td>
                         <td>${new Date(item.time_stamp).toLocaleDateString()} ${new Date(item.time_stamp).toLocaleTimeString()}</td>
+                        <td><p class="${item.read_status == 0 ? 'UNREAD' : 'READ'}">${item.read_status == 0 ? 'UNREAD' : 'READ'}</p></td>
                         <td>
                             <div>
                                 <a href="'. APP_URL .'edit-product/'.  $item->id .'" class="primary-action-btn expand-on-hover">
@@ -228,7 +229,7 @@ const handleSearchQuote = () => {
 
                 let newCol = document.createElement('tr');
                 newCol.innerHTML = `
-                    <td colspan="11" align="center">No quote received</td>`;
+                    <td colspan="12" align="center">No quote received</td>`;
                 quoteTable.querySelector('tbody').appendChild(newCol);
             }
         },

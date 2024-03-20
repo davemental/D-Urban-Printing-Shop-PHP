@@ -1,0 +1,12 @@
+{
+    "name": "admin/d-urban",
+    "authors": [
+        {
+            "name": "Dave",
+            "email": "90299698+david08-bm@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "^2.15.0"
+    }
+}

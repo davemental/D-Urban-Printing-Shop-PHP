@@ -34,6 +34,11 @@ class AdminController extends RenderView {
         $msg = [];
         $user = new User();
 
+        // redirect back to login page if access the url without data
+        if (!isset($_POST["username"]) || empty($_POST["username"]) AND !isset($_POST["password"]) || empty($_POST["password"])) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         if (!isset($_POST["username"]) || empty($_POST["username"])) {
             $msg['error'] = "Username is required";
         } else if (!isset($_POST["password"]) || empty($_POST["password"])) {
@@ -53,7 +58,6 @@ class AdminController extends RenderView {
             }
         }
         echo json_encode($msg);
-
     }
 
     public function index() {
@@ -67,7 +71,12 @@ class AdminController extends RenderView {
             "title" => "Dashboard",
         ]);
 
-        $this->loadView("pages/admin/index", []);
+        $visitor = new Visitors();
+
+        $this->loadView("pages/admin/index", [
+            "title" => "Dashboard",
+            "visitorData" => $visitor->getAll()
+        ]);
 
         $this->loadView("pages/partials/admin-footer", []);
     }
@@ -96,6 +105,11 @@ class AdminController extends RenderView {
 
     public function searchProduct() {
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $product = new Product();
         $productData = [];
 
@@ -119,19 +133,34 @@ class AdminController extends RenderView {
         if (!($_SESSION['user_id'] > 0)) {
             header("Location: " . APP_URL . "admin-login");
         }
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
         
         $this->loadView("pages/partials/admin-header", [
-            "title" => "Add Product",
+            "title" => "Create New Product",
         ]);
 
         $this->loadView("pages/admin/add-product", [
-            "title" => "Add Product",
+            "title" => "Create New Product",
         ]);
 
         $this->loadView("pages/partials/admin-footer", []);
     }
 
     public function createProduct() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $msg = [];
         $featureImgIsUploaded = false;
@@ -194,6 +223,10 @@ class AdminController extends RenderView {
     }
 
     public function deleteProduct(){
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $ids = $_POST['id'];
         $featured_imgs = $_POST['featured_img'];
@@ -223,7 +256,7 @@ class AdminController extends RenderView {
 
          // delete all images that has stored in array
         foreach ($images as $img) {
-            if (file_exists($img)) {
+            if (is_file($img)) {
                 unlink($img);
                 $numDeleted += 1;
             }
@@ -274,6 +307,11 @@ class AdminController extends RenderView {
 
     public function saveEditedProduct() {
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $msg = [];
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/uploads/products/';
         
@@ -308,7 +346,7 @@ class AdminController extends RenderView {
                 $result_update = $product->updateProductSampleImage($id, implode(", ", $db_sample_imgsArr));
                 if ($result_update) { // delete all sample images in directory
                     foreach ($sample_imgs_removedArr as $img) {
-                        if (file_exists($uploadDir.$img)) {
+                        if (is_file($uploadDir.$img)) {
                             unlink($uploadDir.$img);
                         }
                     }
@@ -403,6 +441,11 @@ class AdminController extends RenderView {
 
     public function uploadImageCarousel(){
 
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $msg = [];
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/carousel/';
         $img_carousel = new imageCarousel();
@@ -420,7 +463,7 @@ class AdminController extends RenderView {
             if (!empty(array_filter($removed_imgsArr))) {
                 foreach($removed_imgsArr as $img) {
                     if ($img_carousel->deleteImageByName($img)) { // if remove the unlinked img
-                        if (file_exists($uploadDir.$img)) {
+                        if (is_file($uploadDir.$img)) {
                             unlink($uploadDir.$img);
                             $fileIsUpdated = true;
                         }
@@ -480,7 +523,51 @@ class AdminController extends RenderView {
         $this->loadView("pages/partials/admin-footer", []);
     }
 
+    public function requestDetails($id) {
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
+        $quote = new Quote();
+        if ($quote->findById($id[0])) {
+            
+            // change status to read
+            $quote->updateStatusById($id[0]);
+        }
+        
+        $this->loadView("pages/partials/admin-header", [
+            "title" => "Request Details",
+        ]);
+
+        $this->loadView("pages/admin/request-details", [
+            "title" => "Request Details",
+            "quoteData"=> $quote->findById($id[0])
+        ]);
+
+        $this->loadView("pages/partials/admin-footer", []);
+    }
+
+    public function listenRequestReceived() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
+        $quote = new Quote();
+
+        // check for unread request received
+        $unread_count = $quote->getRowUnreadRequest();
+         echo json_encode($unread_count->rowCount);
+    }
+
     public function searchQuoteRequest() {
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $quote = new Quote();
         $quoteData = [];
@@ -498,11 +585,17 @@ class AdminController extends RenderView {
     }
 
     public function deleteQuote() {
-        
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $ids = $_POST['id'];
         $msg = [];
         $isDeleted = false;
         $file_directory = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/quote-file/';
+
 
         $quote = new Quote();
 
@@ -512,12 +605,12 @@ class AdminController extends RenderView {
             $result = $quote->findById($ids[$i]);
             $file_name = $result->file_name;
 
-            if (file_exists($file_directory . $file_name)) {
+            if (is_file($file_directory . $file_name)) {
                 unlink($file_directory . $file_name);
-                
-                if ($quote->deleteQuoteById($ids[$i])) {
-                    $isDeleted = true;
-                }
+            }
+            
+            if ($quote->deleteQuoteById($ids[$i])) {
+                $isDeleted = true;
             }
         }
 
@@ -552,6 +645,11 @@ class AdminController extends RenderView {
     }
 
     public function createNewUserAccount(){
+
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
 
         $msg = [];
         $user = new User();
@@ -605,6 +703,11 @@ class AdminController extends RenderView {
 
     public function updateAccount() {
         
+        // redirect to login page if not login
+        if (!($_SESSION['user_id'] > 0)) {
+            header("Location: " . APP_URL . "admin-login");
+        }
+
         $msg = [];
         $user = new User();
 
@@ -631,23 +734,6 @@ class AdminController extends RenderView {
             }
         }
         echo json_encode($msg);
-    }
-
-    public function settings() {
-
-        // redirect to login page if not login
-        if (!($_SESSION['user_id'] > 0)) {
-            header("Location: " . APP_URL . "admin-login");
-        }
-
-        $this->loadView("pages/partials/admin-header", [
-            "title" => "Application Settings",
-        ]);
-
-        $this->loadView("pages/admin/settings", [
-        ]);
-
-        $this->loadView("pages/partials/admin-footer", []);
     }
 
 }

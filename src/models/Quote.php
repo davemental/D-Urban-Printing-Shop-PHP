@@ -42,7 +42,7 @@ class Quote {
     }
 
     public function getAllQuotes() {
-        $this->db->query("SELECT * FROM qoute_request ORDER BY id ASC");
+        $this->db->query("SELECT * FROM qoute_request ORDER BY read_status ASC, id DESC");
         return $this->db->resultSet();
     }
 
@@ -58,6 +58,21 @@ class Quote {
 
     public function deleteQuoteById($id){
         $this->db->query("DELETE FROM qoute_request WHERE id = :id");
+        $this->db->bind(":id", $id);
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getRowUnreadRequest() {
+        $this->db->query("SELECT COUNT(*) AS rowCount FROM qoute_request WHERE read_status = 0");
+        return $this->db->singleResult();
+    }
+
+    public function updateStatusById($id) {
+        $this->db->query("UPDATE qoute_request SET read_status = 1 WHERE id = :id");
         $this->db->bind(":id", $id);
         if ($this->db->execute()) {
             return true;

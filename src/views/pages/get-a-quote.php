@@ -11,30 +11,30 @@
                 <div class="form-field">
                     <p>
                         <label for="name">Name<span class="red">*</span></label>
-                        <input type="text" name="name" placeholder="Complete name" required/>
+                        <input type="text" name="name" placeholder="Complete name" minlength="8" maxlength="50" required/>
                     </p>
 
                     <p>
                         <label for="email">Email<span class="red">*</span></label>
-                        <input type="email" name="email" placeholder="example@gmail.com" required/>
+                        <input type="email" name="email" placeholder="example@gmail.com" minlength="8" maxlength="50" required/>
                     </p>
                 </div>
 
                 <div class="form-field">
                     <p>
                         <label for="contact_number">Contact Number<span class="red">*</span></label>
-                        <input type="text" name="contact_number" placeholder="000-000-0000" required/>
+                        <input type="text" name="contact_number" placeholder="000-000-0000" minlength="8" maxlength="50" required/>
                     </p>
 
                     <p>
                         <label for="company">Company/Organization</label>
-                        <input type="text" name="company" placeholder="N/A"/>
+                        <input type="text" name="company" placeholder="N/A" minlength="8" maxlength="100"/>
                     </p>
                 </div>
 
                 <div>
                     <label for="delivery_address">Delivery Address<span class="red">*</span></label>
-                    <input type="text" name="address" placeholder="Complete Delivery Address" required/>
+                    <input type="text" name="address" placeholder="Complete Delivery Address" minlength="8" maxlength="200" required/>
                 </div>
 
                 <div class="form-field">
@@ -54,13 +54,13 @@
 
                     <p>
                         <label for="quantity">Quantity<span class="red">*</span></label>
-                        <input type="number" name="quantity" placeholder="0" data-required="true"/>
+                        <input type="number" name="quantity" placeholder="0" minlength="8" maxlength="50"/>
                     </p>
                 </div>
 
                 <div>
                     <label for="details">Details<span class="red">*</span></label>
-                    <textarea rows="8" name="details" placeholder="Please described your order details" required></textarea>
+                    <textarea rows="8" name="details" placeholder="Please described your order details" minlength="8" maxlength="1000" required></textarea>
                 </div>
 
                 <div>

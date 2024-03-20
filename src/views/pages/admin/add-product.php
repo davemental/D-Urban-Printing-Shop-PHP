@@ -11,17 +11,17 @@
         <form action="" enctype="multipart/form-data">
 
             <div>
-                <label for="title">Product Name*</label>
-                <input type="text" name="title" placeholder="Product Name" required/>
+                <label for="title" class="primary-label">Product Name<span class="red">*</span></label>
+                <input type="text" name="title" placeholder="Product Name" minlength="8" maxlength="100" required/>
             </div>
 
             <div>
-                <label for="description">Product Description*</label>
+                <label for="description" class="primary-label">Product Description<span class="red">*</span></label>
                 <textarea id="editor" name="description"></textarea>
             </div>
 
             <div>
-                <label for="featured_product">Featured Product Image*</label>
+                <label for="featured_product" class="primary-label">Featured Product Image<span class="red">*</span></label>
                 <div class="upload__box">
                     <div class="f_upload__img-wrap">
                       
@@ -42,7 +42,7 @@
             </div>
 
             <div>
-                <label>Sample Product Images (<span class="text-body-s"><i>Each image size should not exceed 2mb, and a maximum of 20 images only</i></span>)</label>
+                <label class="primary-label">Sample Product Images (<span class="text-body-s"><i>Each image size should not exceed 2mb, and a maximum of 20 images only</i></span>)</label>
                 <div class="upload__box">
                     <div class="upload__img-wrap">
                       

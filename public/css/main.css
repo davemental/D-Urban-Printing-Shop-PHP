@@ -1,3 +1,5 @@
+
+
 /* CONTENT CONTAINERS */
 .container {
     max-width: 1536px;
@@ -15,7 +17,7 @@
 .in-quote-con,
 .products,
 .product-item-container,
-.get-quote-container,
+#get-quote,
 .about-us,
 .faqs-container {
     max-width: 1024px;
@@ -25,7 +27,7 @@
 }
 
 .products,
-.get-quote-container,
+#get-quote,
 .about-us-container,
 .faqs-container {
     padding: 60px 0;
@@ -628,6 +630,51 @@ footer {
     font-size: 1.4rem;
 }
 
+.not-found-container {
+    min-height: calc(100vh - 150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.not-found {
+    margin-top: -40px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: flex-start;
+}
+
+.not-found > div {
+    margin-top: 40px;
+}
+
+.not-found .title {
+    font-size:  4rem;
+}
+
+.not-found .sub-title {
+    font-size: 4.5rem;
+    font-weight: 400;
+}
+
+.not-found .description {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    line-height: 3rem;
+}
+
+.not-found a {
+    margin-top: 50px;
+    width: 200px;
+    font-size: 1.5rem;
+    padding: 8px 20px;
+}
+
+.not-found a svg {
+    height: 30px;
+    width: 30px;
+}
+
 /* xl */
 @media (max-width: 1280px) {
     .container,
@@ -647,7 +694,7 @@ footer {
     .header-banner,
     .products,
     .product-item-container,
-    .get-quote-container,
+    #get-quote,
     .about-us,
     .faqs-container {
         max-width: 720px;
@@ -673,6 +720,36 @@ footer {
     .carousel-wrapper {
         height: 300px;
     }
+
+    /* NOT FOUND PAGE */
+    .not-found-container {
+        min-height: calc(100vh - 120px);
+    }
+    
+    .not-found img {
+        height: auto;
+        width: 96%;
+    }
+    
+    .not-found .title {
+        font-size:  2.8rem;
+    }
+    
+    .not-found .sub-title {
+        font-size: 2.9rem;
+    }
+    
+    .not-found .description {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        line-height: 2rem;
+    }
+    
+    .not-found a {
+        margin-top: 30px;
+        width: 150px;
+        font-size: 1.3rem;
+    }
 }
 
 /* md tablet */
@@ -680,7 +757,7 @@ footer {
     .container,
     .about-container,
     .in-quote-con,
-    .get-quote-container,
+    #get-quote,
     .about-us,
     .products,
     .faqs-container {
@@ -793,7 +870,7 @@ footer {
 
     .products,
     .product-item-container,
-    .get-quote-container,
+    #get-quote,
     .about-us,
     .faqs-container {
         overflow: hidden;
@@ -817,11 +894,11 @@ footer {
         height: 32px;
     }
     .header-navigation-mobile .header-navigation-mobile-menu {
-        top: 90px;
+        top: 80px;
     }
 
     .header-navigation-mobile .header-navigation-mobile-menu.show {
-        height: 200px;
+        height: 230px;
     }
     .header-navigation-mobile .header-navigation-mobile-menu a {
         font-size: 1.8rem;
@@ -864,6 +941,53 @@ footer {
     #get-quote form label {
         font-size: 1.2rem;
     }
+
+     /* PAGE NOT FOUND */
+     .not-found-container {
+        min-height: calc(100vh - 120px);
+    }
+
+    .not-found {
+        padding: 0 60px;
+        display: flex ;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .not-found img {
+        height: auto;
+        width: 98%;
+    }
+
+    .not-found > div {
+        text-align: center;
+    }
+
+    .not-found .title {
+        font-size:  3rem;
+    }
+
+    .not-found .sub-title {
+        font-size: 3rem;
+        font-weight: 400;
+    }
+
+    .not-found .details {
+        max-width: 350px;
+    }
+
+    .not-found .description {
+        margin-top: 10px;
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+
+    .not-found a {
+        margin: 30px auto 0 auto;
+        width: 150px;
+        font-size: 1.4rem;
+        padding: 6px 20px;
+    }
 }
 
 /* xs mobile phone */
@@ -876,14 +1000,14 @@ footer {
         height: 30px;
     }
     .header-navigation-mobile .header-navigation-mobile-menu {
-        top: 70px;
+        top: 60px;
     }
     .header-navigation-mobile .header-navigation-mobile-menu.show {
-        height: 200px;
+        height: 210px;
     }
     .header-navigation-mobile .header-navigation-mobile-menu a {
         font-size: 1.8rem;
-        padding: 10px 30px;
+        padding: 8px 30px;
     }
 
     .carousel-wrapper {
@@ -908,6 +1032,25 @@ footer {
 
     /* FOOTER */
     footer p {
+        font-size: 1.2rem;
+    }
+
+    /* PAGE NOT FOUND */
+    .not-found {
+        padding: 0 10px;
+    }
+
+    .not-found .title,
+    .not-found .sub-title {
+        font-size: 2rem;
+    }
+
+    .not-found .details {
+        max-width: 320px;
+    }
+
+    .not-found .description {
+        margin-top: 20px;
         font-size: 1.2rem;
     }
 }
