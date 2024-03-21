@@ -72,7 +72,7 @@
                                     <td>'. $item->title .'</td>
                                     <td>'. strip_tags($item->description) .'</td>
                                     <td><img src="' .APP_URL .'/public/images/uploads/products/' . $item->featured_img . '" alt="" /></td>
-                                    <td><span data-date_entry="'. date('m/d/Y H:i:s', strtotime($item->date_entry)).'">'. date('m/d/Y', strtotime($item->date_entry)) .'</span></td>
+                                    <td><span data-date_entry="'. $item->date_entry.'">'. date('m/d/Y', strtotime($item->date_entry)) .'</span></td>
                                     <td>
                                         <div>
                                             <a href="'. APP_URL .'edit-product/'.  $item->id .'" class="primary-action-btn expand-on-hover">

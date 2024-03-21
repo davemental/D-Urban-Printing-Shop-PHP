@@ -13,6 +13,7 @@ class AdminController extends RenderView {
 
     public function logout() {
         unset($_SESSION["user_id"]);
+        unset($_SESSION["user_name"]);
         header("location: " . APP_URL);
     }
 
@@ -53,6 +54,7 @@ class AdminController extends RenderView {
             if ($user) {
                 $msg['success'] = "Account successfully login ";
                 $_SESSION['user_id'] = $user->id;
+                $_SESSION['user_name'] = $user->name;
             } else {
                 $msg['error'] = "Error encountered! Account don't exist";
             }
@@ -69,6 +71,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Dashboard",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $visitor = new Visitors();
@@ -90,6 +93,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Product Management",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $product = new Product();
@@ -146,6 +150,7 @@ class AdminController extends RenderView {
         
         $this->loadView("pages/partials/admin-header", [
             "title" => "Create New Product",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $this->loadView("pages/admin/add-product", [
@@ -295,6 +300,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Edit ". $productData->title,
+            "userName" => $_SESSION['user_name']
         ]);
 
         $this->loadView("pages/admin/edit-product", [
@@ -427,6 +433,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Image Carousel Settings",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $imgCarousel = new imageCarousel();
@@ -513,6 +520,7 @@ class AdminController extends RenderView {
         
         $this->loadView("pages/partials/admin-header", [
             "title" => "Quote Received",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $this->loadView("pages/admin/request", [
@@ -538,6 +546,7 @@ class AdminController extends RenderView {
         
         $this->loadView("pages/partials/admin-header", [
             "title" => "Request Details",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $this->loadView("pages/admin/request-details", [
@@ -632,6 +641,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "Manage Users",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $user = new User();
@@ -688,6 +698,7 @@ class AdminController extends RenderView {
 
         $this->loadView("pages/partials/admin-header", [
             "title" => "User Account",
+            "userName" => $_SESSION['user_name']
         ]);
 
         $user = new User();

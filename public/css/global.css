@@ -523,3 +523,17 @@ img {
     top: 25%;
     transform: -50%, -50%;
 }
+
+
+/* FOOTER */
+footer {
+    height: 50px;
+    background-color: #222222;
+    border-top: 1px solid rgb(var(--black));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #999;
+    font-size: 1.3rem;
+}

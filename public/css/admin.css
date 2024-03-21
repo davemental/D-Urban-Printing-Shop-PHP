@@ -373,7 +373,11 @@ main {
 .product-list table thead th:nth-child(1),
 .product-list table thead th:nth-child(2),
 .product-list table thead th:nth-child(5),
-.product-list table thead th:nth-child(7) {
+.product-list table thead th:nth-child(7),
+.product-list table tbody tr td:nth-child(1),
+.product-list table tbody tr td:nth-child(2),
+.product-list table tbody tr td:nth-child(5),
+.product-list table tbody tr td:nth-child(7) {
     text-align: center;
 }
 

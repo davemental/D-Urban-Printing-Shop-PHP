@@ -50,8 +50,8 @@
         <div>
             <p class="label">Sample Design:</p>
             <p>
-                <a data-fslightbox href="<?php echo APP_URL . '/public/quote-file/' . $quoteData->file_name; ?>">
-                <img src="<?php echo APP_URL . '/public/quote-file/' . $quoteData->file_name; ?>" alt="" /></a>
+                <a data-fslightbox href="<?php echo APP_URL . '/public/' . ($quoteData->file_name === null ? 'images/no-image2.jpg' : 'quote-file/'. $quoteData->file_name); ?>">
+                <img src="<?php echo APP_URL . '/public/' . ($quoteData->file_name === null ? 'images/no-image2.jpg' : 'quote-file/' . $quoteData->file_name); ?>" alt="" /></a>
             </p>
         </div>
     </div>

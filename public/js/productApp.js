@@ -10,12 +10,12 @@ const productContainer = document.querySelector(".product-list");
 const bulkDelete = document.querySelector('[data-bulk_delete]');
 const btnSearch = document.querySelector('[data-btn_search]');
 
-window.onload = () => { //  change date format to human readable
-    const $date_entries = document.querySelectorAll('[data-date_entry]');
-    $date_entries?.forEach(entry => {
-        entry.innerHTML = humanReadableTime(entry.getAttribute('data-date_entry'))
+window.addEventListener("DOMContentLoaded", () => {
+    const date_entries = document.querySelectorAll('[data-date_entry]');
+    date_entries?.forEach(entry => {
+        entry.textContent = humanReadableTime(entry.getAttribute('data-date_entry'));
     })
-}
+});
 
 productContainer?.addEventListener('click', function (ev) {
     ev.stopImmediatePropagation();
