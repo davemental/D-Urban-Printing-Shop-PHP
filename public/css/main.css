@@ -1014,17 +1014,15 @@
         height: 50px;
     }
 
-        /* PRODUCT LIST */
-        .product-list {
-            grid-template-columns: repeat(1, 1fr);
-            gap: 2.3rem;
-        }
+    /* PRODUCT LIST */
+    .product-list {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2.3rem;
+    }
 
 
     /* FOOTER */
-    footer p {
-        font-size: 1.2rem;
-    }
+
 
     /* PAGE NOT FOUND */
     .not-found {

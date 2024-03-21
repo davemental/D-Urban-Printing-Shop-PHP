@@ -526,7 +526,7 @@ img {
 
 
 /* FOOTER */
-footer {
+footer{
     height: 50px;
     background-color: #222222;
     border-top: 1px solid rgb(var(--black));
