@@ -11,7 +11,7 @@ official website: [http://](https://d-urbanprints.com/)
 
 **Instructions:**
 1. Change the config.php file for Mysql Database information
-2. import the the schema.sql
+2. import the the schema.sql to Mysql Database
 3. Login to: http://localhost/D-Urban-Printing-Shop-PHP/admin-login
     <br>email: admin@gmail.com
     <br>pw: a
