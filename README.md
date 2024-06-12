@@ -1,2 +1,4 @@
 # D-URBAN
-D-Urban Print Website
+**D-Urban Printing Shop**
+
+This website was created using PHP, Vanilla JS and MySql
