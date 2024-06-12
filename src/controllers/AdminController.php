@@ -170,7 +170,7 @@ class AdminController extends RenderView {
         $msg = [];
         $featureImgIsUploaded = false;
         $sampleImgIsUploaded = false;
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/uploads/products/';
+        $uploadDir = PRODUCTS_DIR;
 
         $product = new Product();
         $string_helper = new StringHelper();
@@ -239,7 +239,7 @@ class AdminController extends RenderView {
         $msg = [];
         $images = [];
         $numDeleted = 0;
-        $file_directory = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/uploads/products/';
+        $file_directory = PRODUCTS_DIR;
 
         $product = new Product();
 
@@ -319,7 +319,7 @@ class AdminController extends RenderView {
         }
 
         $msg = [];
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/uploads/products/';
+        $uploadDir = PRODUCTS_DIR;
         
         $product = new Product();
         $string_helper = new StringHelper();
@@ -454,7 +454,7 @@ class AdminController extends RenderView {
         }
 
         $msg = [];
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/images/carousel/';
+        $uploadDir = HERO_DIR;
         $img_carousel = new imageCarousel();
         $string_helper = new StringHelper();
         $fileIsUpdated = false;
@@ -603,7 +603,7 @@ class AdminController extends RenderView {
         $ids = $_POST['id'];
         $msg = [];
         $isDeleted = false;
-        $file_directory = $_SERVER['DOCUMENT_ROOT'] . '/D-URBAN/public/quote-file/';
+        $file_directory = INQUIRY_DIR;
 
 
         $quote = new Quote();
